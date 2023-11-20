@@ -15,3 +15,5 @@ use App\Http\Controllers\MainController;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('index');
+
+Route::get('admin', [MainController::class, 'admin'])->name('admin');
