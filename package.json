@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@inertiajs/vue3": "^1.0.14",
+        "@vitejs/plugin-vue": "^4.5.0",
         "vue": "^3.3.8"
     }
 }
