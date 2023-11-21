@@ -18,10 +18,10 @@ export default {
       },
     },
     colors: {
-      'gray' : '#2F2F2F',
+      'gray' : '#30302E',
       'yellow' : '#F9BE38',
       'white' : '#FFFFFF',
-      'off-white' : '#F4F2EF',
+      'off-white' : '#FCFAF1',
       'light-gray' : '#6A6A6A', 
       'white-gray' : '#EDEDED'
     },
