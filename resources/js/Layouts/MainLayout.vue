@@ -1,6 +1,6 @@
 <template>
 
-    <Navbar :credits="credits"/>
+    <Navbar :userCredits="userCredits"/>
     <main class="p-4 mx-auto">
         <slot/>
     </main>
@@ -12,12 +12,12 @@
 import Navbar from '../Components/Nav/Navbar.vue';
 
 export default {
-components: {
-Navbar
+    components: {
+        Navbar
 },
-props: {
-    credits: Array
-}
+    props: {
+        userCredits: Number
+    }
 }
 
 </script>

@@ -4,7 +4,7 @@
         <div class="md:hidden flex justify-between">
             <div>
                 <Link href="/" class="text-off-white text-6xl">Rewards<span class="text-yellow">23</span></Link>
-                <p v-if="$page.component === 'Index'" class="text-yellow text-3xl">Til rådighed:  x coins</p>
+                <p v-if="$page.component === 'Index'" class="text-yellow text-3xl">Til rådighed: {{userCredits}} x coins</p>
             </div>
             <div class="flex flex-col items-end justify-around">
                 <!-- Only show admin page if user is admin -->
@@ -34,20 +34,20 @@
                             <p class="hidden md:block">Log af</p>
                         </Link>
                     </div>
-                    <p v-if="$page.component === 'Index'" class="text-yellow text-3xl hidden md:block">Til rådighed:  x coins</p>
+                    <p v-if="$page.component === 'Index'" class="text-yellow text-3xl hidden md:block">Til rådighed: {{userCredits}} x coins</p>
             </div>
         </div>
     </nav>
 </template>
 <script>
-import { Link } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3'
 
 export default {
     components: {
-        Link
+        Link,
     },
     props: {
-        credits: Array,
+        userCredits: Number
     }
 }
 </script>
