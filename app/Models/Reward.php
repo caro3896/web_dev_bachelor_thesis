@@ -15,4 +15,10 @@ class Reward extends Model
         'price',
         'image'
     ];
+
+    // Haa many relationship to (a reward can be associated with many purchases)
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -42,4 +44,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Has many relationshop to purchases (users can have multiple purchases)
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
+
+    // Has many trough relationship (rewards through purchases), access to a users rewards
+    public function rewards()
+    {
+        return $this->hasManyThrough(Reward::class, Purchase::class);
+    }
 }
