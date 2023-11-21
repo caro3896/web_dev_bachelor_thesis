@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face { 
+      font-family: "Founders Grotesk"; 
+      src: url("/public/fonts/founders-grotesk-regular.woff2"); 
+    } 
+    
+      html {
+        @apply text-white;
+        @apply bg-gray;
+      }
+  }
