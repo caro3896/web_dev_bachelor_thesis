@@ -29,8 +29,8 @@
                             <p class="hidden md:block">Admin</p>
                         </Link>
                         <!-- Only show logout if user is logged in -->
-                        <Link v-if="$page.props.auth" href="/logout" method="POST" as="button" class="hover:underline inline-flex">
-                            <img src="/icons/logout.svg" alt="" class="mr-2"> 
+                        <Link v-if="$page.props.auth" href="/logout" method="POST" as="button" class="hover:text-yellow hover:fill-yellow inline-flex">
+                            <img src="/icons/logout.svg" alt="Lock icon" class="mr-2"> 
                             <p class="hidden md:block">Log af</p>
                         </Link>
                     </div>

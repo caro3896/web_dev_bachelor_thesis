@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Services\Rewards\RewardsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,8 +33,16 @@ class MainController extends Controller
     // Call admin page
     public function admin()
     {
+        // Get rewards and users
+        $rewardService = new RewardsService();
+        $rewards = $rewardService->getAllRewards();
+
+        $users = User::get();
 
         // Render Admin page and send data
-        return Inertia::render('Admin');
+        return Inertia::render('Admin', [
+            'rewards' => $rewards,
+            'users' => $users
+        ]);
     }
 }

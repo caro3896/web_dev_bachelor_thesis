@@ -1,7 +1,14 @@
 <template>
 
     <Navbar :userCredits="userCredits"/>
-    <main class="p-4 mx-auto">
+
+    <main v-if="$page.component === 'Admin'" class="flex p-4 mx-auto">
+        <Sidebar></Sidebar>
+        <section class="flex-auto p-4 mx-auto">
+            <slot/>
+        </section>
+    </main>
+    <main v-else class="p-4 mx-auto">
         <slot/>
     </main>
 
@@ -10,10 +17,12 @@
 
 <script>
 import Navbar from '../Components/Nav/Navbar.vue';
+import Sidebar from '../Components/Nav/Sidebar.vue';
 
 export default {
     components: {
-        Navbar
+    Navbar,
+    Sidebar
 },
     props: {
         userCredits: Number
