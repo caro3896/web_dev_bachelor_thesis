@@ -13,8 +13,9 @@ class Purchase extends Model
     protected $fillable = [
         'user_id',
         'reward_id',
-        'puchased_at',
     ];
+
+    const CREATED_AT = 'purchased_at';
 
     // A purchase belongs to a user
     public function user()

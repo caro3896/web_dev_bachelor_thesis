@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('user_id');
-            $table->integer('reward_id');
+            // Add foreign key for user_id
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // Add foreign key for reward_id
+            $table->unsignedBigInteger('reward_id')->nullable();
+            $table->foreign('reward_id')->references('id')->on('rewards')->onDelete('set null');
         });
     }
 
