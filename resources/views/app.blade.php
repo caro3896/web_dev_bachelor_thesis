@@ -7,6 +7,8 @@
 
     <title inertia>{{ config('app.name', 'Rewards')}}</title>
 
+    @routes
+
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
 

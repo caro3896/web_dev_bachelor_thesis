@@ -25,7 +25,7 @@ export default {
             :min="min"
             :placeholder="placeholder"
             :value="modelValue"
-            required
+            
             @input="handleInput($event.target.value)"
         >
     </div>

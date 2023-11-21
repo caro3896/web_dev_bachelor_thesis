@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserLoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -16,12 +17,9 @@ class LoginController extends Controller
     }
 
     // Check credentials on login
-    public function store(Request $request)
+    public function store(UserLoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $credentials = $request->only('email', 'password');
 
         // Send user to index page if credentials ok
         if (Auth::attempt($credentials)) {
@@ -30,9 +28,16 @@ class LoginController extends Controller
             return redirect()->intended('index');
         }
 
-        // Send user back with error
+        // Check if the email exists in the system (if it does, password is incorrect)
+        if (Auth::getProvider()->retrieveByCredentials($credentials)) {
+            return back()->withErrors([
+                'password' => 'Forkert password',
+            ])->onlyInput('email');
+        }
+
+        // If email doesn't exist, return with a general error message
         return back()->withErrors([
-            'email' => 'Email findes ikke i systemet',
+            'email' => 'Email ikke fundet i systemet',
         ])->onlyInput('email');
     }
 
