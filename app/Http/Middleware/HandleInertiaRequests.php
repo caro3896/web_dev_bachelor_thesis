@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -36,8 +37,15 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        // Declare shared props (error messages, success messages and if user is admin)
         return array_merge(parent::share($request), [
-            //
+            // 'success' => fn () => $request->session()->get('success'),
+            // 'error' => fn () => $request->session()->get('error'),
+            'auth' => Auth::user() ? [
+                'user' => [
+                    'admin' => Auth::user()->is_admin
+                ]
+            ] : null
         ]);
     }
 }
