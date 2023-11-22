@@ -33,6 +33,8 @@ export default {
 </script>
 
 <template>
+    <h2 class="text-3xl">Opret ny bruger</h2>
+    <div class="mt-8">
         <!-- Form to create user -->
         <form @submit.prevent="createUser()">
             <div class="mb-6">
@@ -60,7 +62,11 @@ export default {
                 <InputError :error="form.errors.admin"></InputError>
             </div>
             <div class="flex items-center">
-                <Button type="submit">Tilføj bruger</Button>
+                <Button type="submit" class="flex">
+                    <img src="/icons/save.svg" alt="" class="pr-2">
+                    <p>Opret bruger</p>
+                </Button>
             </div>
         </form>
+    </div>
 </template>

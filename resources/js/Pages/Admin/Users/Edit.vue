@@ -44,6 +44,8 @@ export default {
 </script>
 
 <template>
+    <h2 class="text-3xl">Rediger bruger</h2>
+    <div class="mt-8">
         <!-- Form for updating user -->
         <form @submit.prevent="updateUser()">
             <div class="mb-6">
@@ -75,7 +77,11 @@ export default {
                 <InputError :error="form.errors.admin"></InputError>
             </div>
             <div class="flex items-center">
-                <Button type="submit">Opdater bruger</Button>
+                <Button type="submit">
+                    <img src="/icons/save.svg" alt="" class="pr-2">
+                    <p>Opdater bruger</p>
+                </Button>
             </div>
         </form>
+    </div>
 </template>

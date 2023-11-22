@@ -63,7 +63,7 @@ export default {
             <div class="flex items-center">
                 <Button type="submit" class="flex">
                     <img src="/icons/save.svg" alt="" class="pr-2">
-                    <p>Tilføj reward</p>
+                    <p>Opret reward</p>
                 </Button>
             </div>
         </form>
