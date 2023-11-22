@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRewardRequest;
 use App\Models\reward;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class RewardController extends Controller
@@ -84,6 +85,10 @@ class RewardController extends Controller
      */
     public function destroy(Reward $reward)
     {
+        // Delete the image from storage
+        if ($reward->image) {
+            Storage::delete($reward->image);
+        }
         // Delete reward from database
         $reward->delete();
         return back()->with('success', "Reward '$reward->name' slettet");
