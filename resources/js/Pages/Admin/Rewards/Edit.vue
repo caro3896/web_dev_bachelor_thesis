@@ -59,7 +59,7 @@ export default {
                 }
             return data;
             })
-        .post(route('rewards.reward.update', {_method: 'put', id: this.form.id})) // Multipart limitations - upload file using POST request, but handled as PUT
+        .post(route('admin.rewards.reward.update', {_method: 'put', id: this.form.id})) // Multipart limitations - upload file using POST request, but handled as PUT
         },
     }
 }
@@ -93,7 +93,7 @@ export default {
         </div>
         <!-- If new image is selected show preview -->
         <div v-if="imageSelected" class="mb-2">
-            <img :src="newImagePreview" alt="New Image Preview" class="max-w-md">
+            <img :src="newImagePreview" alt="New Image Preview" class="max-w-md h-80">
         </div>
         <InputError :error="form.errors.image"></InputError>
         <!-- When a new file is selected, call onImageChange() -->
@@ -104,7 +104,7 @@ export default {
                 <InputError :error="form.errors.price"></InputError>
             </div>
             <div class="flex items-center">
-                <Button type="submit" class="flex">
+                <Button type="submit">
                     <img src="/icons/save.svg" alt="" class="pr-2">
                     <p>Opdater reward</p>
                 </Button>

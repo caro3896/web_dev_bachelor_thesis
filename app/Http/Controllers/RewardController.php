@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRewardRequest;
+use App\Http\Requests\UpdateRewardRequest;
 use App\Models\reward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -50,7 +51,7 @@ class RewardController extends Controller
         // Save new reward and return with success message
         if ($newReward->save()) {
             $rewardName = $request->input('name');
-            return redirect()->route('admin.rewards')->with('success', "Rewarden '$rewardName' blev tilføjet");
+            return redirect()->route('admin.rewards.index')->with('success', "Rewarden '$rewardName' blev tilføjet");
         }
 
         return back()->withErrors(['error' => "Oprettelse af reward mislykkedes"]);
@@ -77,9 +78,32 @@ class RewardController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, reward $reward)
+    public function update(UpdateRewardRequest $request, string $id)
     {
-        //
+        // Validation through UpdateRewardRequest (see Requests)
+
+        // Find exisitin reward
+        $exisitingReward = Reward::find($id);
+
+        // If reward exists, insert data from form
+        if ($exisitingReward) {
+            $exisitingReward->name = $request->input('name');
+            $exisitingReward->description = $request->input('description');
+            $exisitingReward->price = $request->input('price');
+
+            // If a file has been uploaded, store the image in storage and save the path to the image in the database
+            if ($request->hasFile('image')) {
+                $image_path = $request->file('image')->store('image', 'public');
+                $exisitingReward->image = $image_path;
+            }
+
+            // Save new reward and return with success message
+            if ($exisitingReward->save()) {
+                return redirect()->route('admin.rewards.index')->with('success', "Reward '$exisitingReward->name' opdateret");
+            }
+            return back()->withErrors(['error' => "Opdatering af reward mislykkedes"]);
+        }
+        return back()->withErrors(['error' => "Reward ikke fundet"]);
     }
 
     /**
