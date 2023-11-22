@@ -75,7 +75,7 @@ export default {
                 <InputError :error="form.errors.admin"></InputError>
             </div>
             <div class="flex items-center">
-                <Button type="submit">Rediger bruger</Button>
+                <Button type="submit">Opdater bruger</Button>
             </div>
         </form>
 </template>

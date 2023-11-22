@@ -26,7 +26,7 @@ class MainController extends Controller
         // Render Index page and pass user credits to the view
         return Inertia::render('Index', [
             'userCredits' => $userCredits,
-            'rewards' => $rewards
+            'rewards' => $rewards,
         ]);
     }
 }
