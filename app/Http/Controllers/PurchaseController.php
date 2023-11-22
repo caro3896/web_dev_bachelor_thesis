@@ -3,63 +3,50 @@
 namespace App\Http\Controllers;
 
 use App\Models\Purchase;
+use App\Models\Reward;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class PurchaseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function buy(string $id)
     {
-        //
-    }
+        // Get the logged in user
+        $user = Auth::user();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        // Find reward
+        $reward = Reward::findOrFail($id);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Check if user has enough credits
+        if ($user->credits < $reward->price) {
+            return back()->withErrors(['error' => "Ikke nok credits til at købe denne reward"]);
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Purchase $purchase)
-    {
-        //
-    }
+        // Begin transaction
+        DB::beginTransaction();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Purchase $purchase)
-    {
-        //
-    }
+        try {
+            // Subtract the price of the reward and decrease quantity
+            // $user->decrement('credits', $reward->price);
+            $user->credits -= $reward->price;
+            $user->save();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Purchase $purchase)
-    {
-        //
-    }
+            // Create a record in the Purchases table
+            Purchase::create([
+                'user_id' => $user->id,
+                'reward_id' => $reward->id,
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Purchase $purchase)
-    {
-        //
+            ]);
+            
+            // Commit the transaction
+            DB::commit();
+
+        } catch (\Exception $ex) {
+            Log::error('Purchase failed: ' . $ex->getMessage());
+            DB::rollBack();
+            return back()->withErrors(['error' => 'Noget gik galt, prøv igen senere']);
+        }
     }
 }

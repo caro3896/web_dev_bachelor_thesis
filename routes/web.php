@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\RewardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\PurchaseController;
 use Illuminate\Support\Facades\Route;
+
 
 
 /*
@@ -29,6 +31,9 @@ Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth')->
 Route::middleware('auth')->group(function () {
     // Route to main page/index
     Route::get('/', [MainController::class, 'index'])->name('index');
+
+    // Route to handle buy
+    Route::put('{reward:id}/buy', [PurchaseController::class, 'buy'])->name('buy');
 
     // Routes to admin pages - only accessible if admin -> using middleware 'Admin'
     Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {

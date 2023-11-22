@@ -15,8 +15,6 @@ class Purchase extends Model
         'reward_id',
     ];
 
-    const CREATED_AT = 'purchased_at';
-
     // A purchase belongs to a user
     public function user()
     {

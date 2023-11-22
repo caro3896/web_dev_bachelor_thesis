@@ -23,16 +23,16 @@ export default {
         },
     },
     methods: {
-        // buy(reward) {
-        //     router.put(route('buy', {id: reward.id}), {}, {
-        //         onSuccess: (response) => {
-        //             this.message = "Du har købt: " + reward.name;
-        //         },
-        //         onError: (error) => {
-        //             alert(error.error);
-        //         }
-        //     });
-        // },
+        buy(reward) {
+            router.put(route('buy', {id: reward.id}), {}, {
+                onSuccess: (response) => {
+                    this.message = "Du har købt: " + reward.name;
+                },
+                onError: (error) => {
+                    alert(error.error);
+                }
+            });
+        },
         open() {
             this.isOpen =! this.isOpen
         }
