@@ -22,15 +22,15 @@ class AdminController extends Controller
         ]);
     }
 
-    // // Call admin users page
-    // public function users()
-    // {
-    //     // Get users
-    //     $users = User::get();
+    // Call admin users page
+    public function users()
+    {
+        // Get users
+        $users = User::get();
 
-    //     // Render users page and send data
-    //     return Inertia::render('Users', [
-    //         'users' => $users
-    //     ]);
-    // }
+        // Render users page and send data
+        return Inertia::render('Admin/Users/Index', [
+            'users' => $users
+        ]);
+    }
 }
