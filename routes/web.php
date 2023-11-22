@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\RewardController;
+use App\Http\Controllers\Admin\RewardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,7 @@ Route::middleware('auth')->group(function () {
 
         // Routes for rewards
         Route::prefix('rewards')->name('rewards.')->group(function () {
-            Route::get('/', [AdminController::class, 'rewards'])->name('index'); // Default rewards page
+            Route::get('/', [RewardController::class, 'index'])->name('index'); // Default rewards page
             Route::get('/create', [RewardController::class, 'create'])->name('create');
             Route::post('/store', [RewardController::class, 'store'])->name('store');
 
@@ -52,9 +53,20 @@ Route::middleware('auth')->group(function () {
             );
         });
 
-        // Routes for users
+        // Routes for users            
         Route::prefix('users')->name('users.')->group(function () {
-            Route::get('/', [AdminController::class, 'users'])->name('index'); // Default users page
+            Route::get('/', [UserController::class, 'index'])->name('index'); // Default users page
+            Route::get('/create', [UserController::class, 'create'])->name('create');
+            Route::post('/store', [UserController::class, 'store'])->name('store');
+
+            // Routes to update, edit and delete single user
+            Route::prefix('{user:id}')->name('user.')->group(
+                function () {
+                    Route::put('/update', [UserController::class, 'update'])->name('update');
+                    Route::get('/create', [UserController::class, 'edit'])->name('edit');
+                    Route::delete('/', [UserController::class, 'destroy'])->name('destroy');
+                }
+            );
         });
     });
 });

@@ -2,7 +2,7 @@
     <div class="flex justify-between items-center pb-6">
         <h2 class="text-3xl">Users</h2>
         <!-- Create new reward -->
-        <!-- <LinkButton :href="route('admin.users.create')">+ Opret ny</LinkButton> -->
+        <LinkButton :href="route('admin.users.create')">+ Opret ny</LinkButton>
     </div>
     <Table :users="users"></Table>
    

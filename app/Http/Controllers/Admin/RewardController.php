@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRewardRequest;
 use App\Http\Requests\UpdateRewardRequest;
-use App\Models\reward;
+use App\Models\Reward;
+use App\Services\Rewards\RewardsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -16,7 +18,14 @@ class RewardController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Index');
+        // Get rewards
+        $rewardService = new RewardsService();
+        $rewards = $rewardService->getAllRewards();
+
+        // Render rewards page and send data
+        return Inertia::render('Admin/Rewards/Index', [
+            'rewards' => $rewards,
+        ]);
     }
 
     /**
@@ -60,7 +69,7 @@ class RewardController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(reward $reward)
+    public function show(Reward $reward)
     {
         //
     }
