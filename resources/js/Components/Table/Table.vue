@@ -1,10 +1,10 @@
 <script>
 // import Edit from './Edit.vue';
-// import Delete from './Delete.vue';
+import Delete from './Delete.vue';
 
 export default {
     components: {
-
+      Delete
     },
     props: {
         rewards: Object,
@@ -38,7 +38,7 @@ export default {
               </td>
               <td>
                 <!-- Slet -->
-                <!-- <Delete :deleteRoute="route('rewards.reward.destroy', { id: reward.id })"/> -->
+                <Delete :deleteRoute="route('admin.rewards.reward.destroy', { id: reward.id })"/>
               </td>
             </tr>
           </tbody>

@@ -82,8 +82,10 @@ class RewardController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(reward $reward)
+    public function destroy(Reward $reward)
     {
-        //
+        // Delete reward from database
+        $reward->delete();
+        return back()->with('success', "Reward '$reward->name' slettet");
     }
 }
