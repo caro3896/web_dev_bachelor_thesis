@@ -61,8 +61,10 @@ export default {
                 <InputError :error="form.errors.price"></InputError>
             </div>
             <div class="flex items-center">
-                <Button type="submit">
-                    <img src="/icons/save.svg" alt="" class="inline pr-2">Tilføj reward</Button>
+                <Button type="submit" class="flex">
+                    <img src="/icons/save.svg" alt="" class="pr-2">
+                    <p>Tilføj reward</p>
+                </Button>
             </div>
         </form>
     </div>

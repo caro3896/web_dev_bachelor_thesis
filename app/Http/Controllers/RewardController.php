@@ -67,9 +67,11 @@ class RewardController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(reward $reward)
+    public function edit(Reward $reward)
     {
-        //
+        return Inertia::render('Admin/Rewards/Edit', [
+            'reward' => $reward,
+        ]);
     }
 
     /**

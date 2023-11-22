@@ -1,10 +1,11 @@
 <script>
-// import Edit from './Edit.vue';
+import Edit from './Edit.vue';
 import Delete from './Delete.vue';
 
 export default {
     components: {
-      Delete
+      Delete,
+      Edit
     },
     props: {
         rewards: Object,
@@ -34,7 +35,7 @@ export default {
               <td class="px-6 py-4">{{ reward.quantity }}</td>
               <td>
                   <!-- Rediger -->
-                  <!-- <Edit :editRoute="route('rewards.reward.edit', { id: reward.id })"/> -->
+                  <Edit :editRoute="route('admin.rewards.reward.edit', { id: reward.id })"/>
               </td>
               <td>
                 <!-- Slet -->
