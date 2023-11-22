@@ -20,7 +20,7 @@ export default {
         // Filter rewards based on quantity and amount of credits if switch is active
         filteredRewards() {
             if (this.toggleActive) {
-                return this.rewards.filter(reward => this.credits[0].amount >= reward.price && reward.quantity > 0);
+                return this.rewards.filter(reward => this.credits[0].amount >= reward.price);
             } else {
                 return this.rewards;
             }

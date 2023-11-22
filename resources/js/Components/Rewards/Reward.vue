@@ -33,9 +33,9 @@ export default {
         //         }
         //     });
         // },
-        // open() {
-        //     this.isOpen =! this.isOpen
-        // }
+        open() {
+            this.isOpen =! this.isOpen
+        }
     }
 }
 </script>
@@ -50,8 +50,7 @@ export default {
             </div>
         </div>
         <div v-else>
-            <div class="absolute top-0 left-0 flex justify-between p-3 w-full">
-              <p class="bg-gray rounded-2xl py-1 px-3"> x{{ reward.quantity }}</p>
+            <div class="absolute top-0 left-0 flex justify-end p-3 w-full">
               <p class="bg-yellow rounded-2xl py-1 px-3 text-gray">{{ reward.price }} x coins</p>
             </div>
             <div @click="open()" class="absolute bg-white w-full rounded-t-2xl rounded-b-xl bottom-0 left-0 p-6 max-h-18 overflow-hidden before:absolute before:h-1 before:w-20 before:bg-white-gray before:top-1.5 before:left-1/2 before:-translate-x-1/2 before:rounded-full cursor-pointer transition-max-height duration-1000 ease-in-out" :class="{ 'max-h-full': isOpen }">
