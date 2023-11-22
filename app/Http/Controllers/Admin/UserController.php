@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -66,17 +67,43 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return Inertia::render('Admin/Users/Edit', [
+            'user' => $user
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, string $id)
     {
-        //
+        // Find user from id
+        $user = User::find($id);
+
+        // If user exists, update user with data from form
+        if ($user) {
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->credits = $request->input('credits');
+            $user->is_admin = $request->input('admin');
+
+            // Find password input
+            $password = $request->input('password');
+            // If password has input, set it as the new password
+            if ($password) {
+                $user->password = $request->input('password');
+            }
+
+            // Save user and return with success message
+            if ($user->save()) {
+                $userName = $request->input('name');
+                return redirect()->route('admin.users.index')->with('success', "Brugeren '$userName' blev opdateret");
+            }
+            return back()->withErrors(['error' => "Opdatering af bruger mislykkedes"]);
+        }
+        return back()->withErrors(['error' => "Bruger ikke fundet"]);
     }
 
     /**

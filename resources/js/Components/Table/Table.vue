@@ -63,7 +63,7 @@ export default {
               <td class="px-6 py-4">{{ user.is_admin ? 'Admin' : 'Standard' }}</td>
               <td>
                 <!-- Rediger -->
-                <!-- <Edit :editRoute="route('users.user.edit', { id: user.id })"/> -->
+                <Edit :editRoute="route('admin.users.user.edit', { id: user.id })"/>
               </td>
               <td>
                 <!-- Slet -->
