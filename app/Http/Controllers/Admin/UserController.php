@@ -82,8 +82,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        // Delete user from database
+        $user->delete();
+        return back()->with('success', "Brugeren '$user->name' blev slettet");
     }
 }
