@@ -8,9 +8,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Inertia\Inertia;
 
 class PurchaseController extends Controller
 {
+    public function index()
+    {
+
+        // Get purchases
+        // $purchases = Purchase::get();
+
+        $purchases = Purchase::with('user', 'reward')->latest()->get();
+
+        // Render users page and send data
+        return Inertia::render('Admin/Purchases/Index', [
+            'purchases' => $purchases
+        ]);
+    }
     public function buy(string $id)
     {
         // Get the logged in user
@@ -39,10 +53,9 @@ class PurchaseController extends Controller
                 'reward_id' => $reward->id,
 
             ]);
-            
+
             // Commit the transaction
             DB::commit();
-
         } catch (\Exception $ex) {
             Log::error('Purchase failed: ' . $ex->getMessage());
             DB::rollBack();

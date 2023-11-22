@@ -73,5 +73,10 @@ Route::middleware('auth')->group(function () {
                 }
             );
         });
+
+        // Routes for purchases            
+        Route::prefix('purchases')->name('puchases.')->group(function () {
+            Route::get('/', [PurchaseController::class, 'index'])->name('index'); // Default users page
+        });
     });
 });

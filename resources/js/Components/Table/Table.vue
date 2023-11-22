@@ -8,8 +8,9 @@ export default {
       Edit
     },
     props: {
-        rewards: Object,
-        users: Object
+        rewards: Array,
+        users: Array,
+        purchases: Array
     }
 }
 </script>
@@ -68,6 +69,32 @@ export default {
               <td>
                 <!-- Slet -->
                 <Delete :deleteRoute="route('admin.users.user.destroy', { id: user.id })"/>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Purchases table -->
+        <table v-if="purchases" class="min-w-full text-left table-auto">
+          <thead class="border-b">
+            <tr>
+              <th scope="col" class="px-6 py-4">Reward</th>
+              <th scope="col" class="px-6 py-4">Indløst af</th>
+              <th scope="col" class="px-6 py-4">Dato</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  v-for="purchase in purchases" :key="purchase.id" class="border-b dark:border-neutral-500">
+              <td class="px-6 py-4">{{ purchase.reward.name }}</td>
+              <td class="px-6 py-4">{{ purchase.user.name }}</td>
+              <td class="px-6 py-4">{{ purchase.created_at }}</td>
+              <td>
+                <!-- Rediger -->
+                <!-- <Edit :editRoute="route('admin.users.user.edit', { id: user.id })"/> -->
+              </td>
+              <td>
+                <!-- Slet -->
+                <!-- <Delete :deleteRoute="route('admin.users.user.destroy', { id: user.id })"/> -->
               </td>
             </tr>
           </tbody>

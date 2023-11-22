@@ -10,6 +10,8 @@ class Purchase extends Model
 {
     use HasFactory;
 
+    // protected $dateFormat = 'U';
+
     protected $fillable = [
         'user_id',
         'reward_id',

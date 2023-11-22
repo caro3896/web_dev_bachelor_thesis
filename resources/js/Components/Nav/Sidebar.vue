@@ -1,8 +1,9 @@
 <template>
     <section class="flex">
-      <div class="flex flex-col h-screen border-r border-r-2 py-8 pl-4 pr-10">
+      <div class="flex flex-col h-screen border-r border-r-1 py-8 pl-4 pr-10">
         <SidebarLink href="/admin/rewards" :imageSrc="'/icons/reward.svg'" altText="Icon for rewards" :class="{'text-yellow': $page.component.startsWith('Admin/Rewards') }">Rewards</SidebarLink>
-        <SidebarLink href="/admin/users" :imageSrc="'/icons/users.svg'" altText="Icon for users" :class="{'text-yellow': $page.component.startsWith('Admin/Users') }">Users</SidebarLink>
+        <SidebarLink href="/admin/users" :imageSrc="'/icons/users.svg'" altText="Icon for users" :class="{'text-yellow': $page.component.startsWith('Admin/Users') }">Brugere</SidebarLink>
+        <SidebarLink href="/admin/purchases" :imageSrc="'/icons/purchases.svg'" altText="Icon for users" :class="{'text-yellow': $page.component.startsWith('Admin/Purchases') }">Indløste rewards</SidebarLink>
     </div>
     </section>
   </template>
