@@ -17,7 +17,7 @@ class AdminController extends Controller
         $rewards = $rewardService->getAllRewards();
 
         // Render rewards page and send data
-        return Inertia::render('Admin/Rewards', [
+        return Inertia::render('Admin/Rewards/Index', [
             'rewards' => $rewards,
         ]);
     }

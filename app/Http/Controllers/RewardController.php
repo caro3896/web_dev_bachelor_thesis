@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRewardRequest;
 use App\Models\reward;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -21,15 +22,37 @@ class RewardController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render("Admin/Rewards/Create");
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRewardRequest $request)
     {
-        //
+        // Validation through StoreRewardRequest (see Requests)
+
+        // Create new reward from model and insert data from form
+        $newReward = new Reward;
+        $newReward->name = $request->input('name');
+        $newReward->description = $request->input('description');
+        $newReward->price = $request->input('price');
+
+        $image_path = '';
+
+        // If a file has been uploaded, store the image in storage and save the path to the image in the database
+        if ($request->hasFile('image')) {
+            $image_path = $request->file('image')->store('image', 'public');
+            $newReward->image = $image_path;
+        }
+
+        // Save new reward and return with success message
+        if ($newReward->save()) {
+            $rewardName = $request->input('name');
+            return redirect()->route('admin.rewards')->with('success', "Rewarden '$rewardName' blev tilføjet");
+        }
+
+        return back()->withErrors(['error' => "Oprettelse af reward mislykkedes"]);
     }
 
     /**

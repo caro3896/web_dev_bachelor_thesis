@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RewardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,12 @@ Route::middleware('auth')->group(function () {
         Route::prefix('admin', [AdminController::class])->name('admin.')->group(function () {
             Route::get('/rewards', [AdminController::class, 'rewards'])->name('rewards');
             Route::get('/users', [AdminController::class, 'users'])->name('users');
+
+            // Routes to store and create rewards
+            Route::prefix('rewards', [RewardController::class])->name('rewards.')->group(function () {
+            Route::get('/create', [RewardController::class, 'create'])->name('create');
+            Route::post('/store', [RewardController::class, 'store'])->name('store');
+            });
         });
     });
 });

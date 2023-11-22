@@ -1,6 +1,6 @@
 <template>
     <section class="flex">
-      <div class="flex flex-col h-screen border-r border-r-2 p-4">
+      <div class="flex flex-col h-screen border-r border-r-2 py-8 pl-4 pr-10">
         <SidebarLink href="/admin/rewards" :imageSrc="'/icons/reward.svg'" altText="Icon for rewards">Rewards</SidebarLink>
         <SidebarLink href="/" :imageSrc="'/icons/users.svg'" altText="Icon for users">Users</SidebarLink>
     </div>
