@@ -2,9 +2,9 @@
 
     <Navbar :userCredits="userCredits"/>
 
-    <main v-if="$page.component === 'Admin'" class="flex p-4 mx-auto">
+    <main v-if="$page.component.startsWith('Admin/')" class="flex p-4 mx-auto">
         <Sidebar></Sidebar>
-        <section class="flex-auto p-4 mx-auto">
+        <section class="flex-auto p-8 mx-auto">
             <slot/>
         </section>
     </main>

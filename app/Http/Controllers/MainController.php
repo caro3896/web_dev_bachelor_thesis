@@ -29,20 +29,4 @@ class MainController extends Controller
             'rewards' => $rewards
         ]);
     }
-
-    // Call admin page
-    public function admin()
-    {
-        // Get rewards and users
-        $rewardService = new RewardsService();
-        $rewards = $rewardService->getAllRewards();
-
-        $users = User::get();
-
-        // Render Admin page and send data
-        return Inertia::render('Admin', [
-            'rewards' => $rewards,
-            'users' => $users
-        ]);
-    }
 }

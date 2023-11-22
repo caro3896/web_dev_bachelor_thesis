@@ -24,7 +24,7 @@
             <div class="flex flex-col items-end md:gap-3">
                     <div class="flex flex-col md:flex-row items-end md:items-center">
                         <!-- Only show admin page if user is admin -->
-                        <Link v-if="$page.props.auth.user.admin" href="/admin" class="hover:underline text-gray inline-flex bg-white rounded-full py-3 px-5 md:mr-6" :class="{'underline': $page.component === 'Admin' }">
+                        <Link v-if="$page.props.auth.user.admin" href="/admin/rewards" class="hover:bg-yellow text-gray inline-flex bg-white rounded-full py-3 px-5 md:mr-6" :class="{'bg-yellow': $page.component.startsWith('Admin/') }">
                             <img src="/icons/profile.svg" alt="Silhouette of person" class="mr-2"> 
                             <p class="hidden md:block">Admin</p>
                         </Link>

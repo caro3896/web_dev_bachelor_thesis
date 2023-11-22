@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MainController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\MainController;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,9 @@ Route::middleware('auth')->group(function () {
     // Routes to admin pages - only acccessible if admin -> using middleware 'Admin'
     Route::middleware('admin')->group(function () {
         // Route to admin page
-        Route::get('admin', [MainController::class, 'admin'])->name('admin');
+        Route::prefix('admin', [AdminController::class])->name('admin.')->group(function () {
+            Route::get('/rewards', [AdminController::class, 'rewards'])->name('rewards');
+            Route::get('/users', [AdminController::class, 'users'])->name('users');
+        });
     });
 });
