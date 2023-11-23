@@ -16,8 +16,14 @@ class MainController extends Controller
     {
         // Get the authenticated user
         $user = Auth::user();
+
+        // Check if the user is an admin
+        if (Auth::user()->is_admin) {
+            return redirect()->route('admin.rewards.index'); // Redirect to admin page
+        }
+
         // Retrieve the user's credits
-        $userCredits = $user->credits; // Assuming you have a "credits" column in your users table
+        $userCredits = $user->credits;
 
         // Get rewards and credits
         $rewardService = new RewardsService();

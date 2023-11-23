@@ -21,23 +21,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware(['guest'])->group(function () {
 
-// Routes to login page, store login and logout
-Route::get('login', [LoginController::class, 'create'])->name('login');
-Route::post('login', [LoginController::class, 'store'])->name('store');
+    // Routes to login
+    Route::prefix('login')->name('login.')->group(function () {
+        Route::get('/', [LoginController::class, 'create'])->name('create');
+        Route::post('/', [LoginController::class, 'store'])->name('store');
+    });
+});
+
+// Route to logout
 Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth')->name('logout');
+
+
 
 // Routes to site - only accessible if logged in -> using middleware 'Authenticate' (sends the user to login if not authenticated)
 Route::middleware('auth')->group(function () {
+
+    // Routes for regular user
     // Route to main page/index
     Route::get('/', [MainController::class, 'index'])->name('index');
 
     // Route to handle buy
+    // TODO: Change to vote
     Route::put('{reward:id}/buy', [PurchaseController::class, 'buy'])->name('buy');
 
     // Routes to admin pages - only accessible if admin -> using middleware 'Admin'
     Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
-        // Redirect /admin to /admin/rewards
+        // Redirect /admin to /admin/dashboard
         Route::get('/', function () {
             return redirect()->route('admin.rewards.index');
         });

@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         login() {
-            this.form.post(route('store'));
+            this.form.post(route('login.store'));
         }
     }
 }

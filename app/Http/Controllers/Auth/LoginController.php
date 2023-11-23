@@ -21,11 +21,16 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        // Send user to index page if credentials ok
+        // Attempt to log in the user
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('index');
+            // Check if the user is an admin
+            if (Auth::user()->is_admin) {
+                return redirect()->route('admin.rewards.index'); // Redirect to admin page
+            }
+
+            return redirect()->intended(route('index'));
         }
 
         // Check if the email exists in the system (if it does, password is incorrect)
