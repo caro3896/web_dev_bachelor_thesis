@@ -15,9 +15,7 @@ class PurchaseController extends Controller
     public function index()
     {
 
-        // Get purchases
-        // $purchases = Purchase::get();
-
+        // Get all purchases - latest first 
         $purchases = Purchase::with('user', 'reward')->latest()->get();
 
         // Render users page and send data

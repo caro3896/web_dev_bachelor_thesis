@@ -17,6 +17,10 @@ class Purchase extends Model
         'reward_id',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+    ];
+
     // A purchase belongs to a user
     public function user()
     {

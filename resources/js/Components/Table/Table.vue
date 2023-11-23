@@ -80,7 +80,7 @@ export default {
             <tr>
               <th scope="col" class="px-6 py-4">Reward</th>
               <th scope="col" class="px-6 py-4">Indløst af</th>
-              <th scope="col" class="px-6 py-4">Dato</th>
+              <th scope="col" class="px-6 py-4">Dato for indløsning</th>
             </tr>
           </thead>
           <tbody>
