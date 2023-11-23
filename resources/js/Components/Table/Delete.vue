@@ -24,5 +24,8 @@ export default {
 </script>
 
 <template>
-    <button class="rounded-xl bg-white-gray text-gray py-1.5 px-4 hover:underline" @click="deleteReward()">Slet</button>
+    <LinkButton buttonStyle="bg-light-gray text-white" href="editRoute">
+        <img src="/icons/delete.svg" alt="">
+        <p class="hidden md:block pl-2">Slet</p>
+    </LinkButton>
 </template>

@@ -88,14 +88,6 @@ export default {
               <td class="px-6 py-4">{{ purchase.reward.name }}</td>
               <td class="px-6 py-4">{{ purchase.user.name }}</td>
               <td class="px-6 py-4">{{ purchase.created_at }}</td>
-              <td>
-                <!-- Rediger -->
-                <!-- <Edit :editRoute="route('admin.users.user.edit', { id: user.id })"/> -->
-              </td>
-              <td>
-                <!-- Slet -->
-                <!-- <Delete :deleteRoute="route('admin.users.user.destroy', { id: user.id })"/> -->
-              </td>
             </tr>
           </tbody>
         </table>

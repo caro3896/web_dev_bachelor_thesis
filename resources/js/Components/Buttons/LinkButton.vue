@@ -2,6 +2,12 @@
 import { Link } from '@inertiajs/vue3';
 
 export default {
+    props: {
+        buttonStyle: {
+            type: String,
+            default: 'bg-white text-gray'
+        }
+    },
     components: {
         Link
     }
@@ -9,5 +15,5 @@ export default {
 </script>
 
 <template>
-    <Link class="bg-off-white text-gray rounded-xl py-2 px-4 hover:underline"><slot/></Link>
+    <Link :class="buttonStyle" class="rounded-xl py-2 px-4 hover:underline max-w-min min-w-max flex content-center"><slot/></Link>
 </template>
