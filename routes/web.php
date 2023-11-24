@@ -94,6 +94,7 @@ Route::middleware('auth')->group(function () {
         // Routes for credits            
         Route::prefix('credits')->name('credits.')->group(function () {
             Route::get('/', [CreditsController::class, 'index'])->name('index'); // Default credits page
+            Route::put('/update', [CreditsController::class, 'update'])->name('update');
         });
     });
 });

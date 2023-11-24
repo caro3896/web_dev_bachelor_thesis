@@ -58,7 +58,9 @@ class CreditsController extends Controller
      */
     public function update(Request $request, Credits $credits)
     {
-        //
+        $credits = Credits::first();
+        $credits->increment('amount', $request->credits);
+        return back()->with('success', "'$request->credits' credits tilføjet");
     }
 
     /**
