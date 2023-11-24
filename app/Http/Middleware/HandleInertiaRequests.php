@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Credits;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
@@ -41,6 +42,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             // 'success' => fn () => $request->session()->get('success'),
             // 'error' => fn () => $request->session()->get('error'),
+            'credits' => Credits::first()->amount,
             'auth' => Auth::user() ? [
                 'user' => [
                     'admin' => Auth::user()->is_admin

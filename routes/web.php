@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\CreditsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -43,9 +43,8 @@ Route::middleware('auth')->group(function () {
     // Route to main page/index
     Route::get('/', [MainController::class, 'index'])->name('index');
 
-    // Route to handle buy
-    // TODO: Change to vote
-    Route::put('{reward:id}/buy', [PurchaseController::class, 'buy'])->name('buy');
+    // Route to handle vote
+    Route::put('{rewardId:id}/vote', [VoteController::class, 'vote'])->name('vote');
 
     // Routes to admin pages - only accessible if admin -> using middleware 'Admin'
     Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {

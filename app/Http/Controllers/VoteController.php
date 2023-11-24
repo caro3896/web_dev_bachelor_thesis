@@ -2,64 +2,58 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reward;
 use App\Models\Vote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class VoteController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Handle votes
      */
-    public function index()
+    public function vote(string $rewardId)
     {
-        //
-    }
+        try {
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+            DB::beginTransaction();
+            // Get the logged in user
+            $user = Auth::user();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            // Find reward
+            $reward = Reward::findOrFail($rewardId);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Vote $vote)
-    {
-        //
-    }
+            // Check if the user has already voted for the reward
+            $existingVote = Vote::where('user_id', $user->id)->where('reward_id', $rewardId)->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Vote $vote)
-    {
-        //
-    }
+            if ($existingVote) {
+                // If the user has already voted, remove the vote
+                $existingVote->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Vote $vote)
-    {
-        //
-    }
+                // Update the vote count on the reward
+                Reward::where('id', $rewardId)->decrement('votes');
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Vote $vote)
-    {
-        //
+                DB::commit();
+
+                return back()->with('success', "Stemme på '$reward->name' fjernet");
+            }
+
+            // If the user has not voted, record the vote
+            Vote::create([
+                'user_id' => $user->id,
+                'reward_id' => $rewardId,
+            ]);
+
+            // Update the vote count on the reward
+            Reward::where('id', $rewardId)->increment('votes');
+
+            DB::commit();
+
+            return back()->with('success', "Du har stemt på '$reward->name'");
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withErrors(['error' => 'Noget gik galt, prøv igen senere']);
+        }
     }
 }
