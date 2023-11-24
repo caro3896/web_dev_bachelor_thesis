@@ -3,7 +3,7 @@ export default {
     props: {
         buttonStyle: {
             type: String,
-            default: 'bg-white text-gray'
+            default: 'bg-light-gray text-white'
         }
     }
 }

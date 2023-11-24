@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Credits;
 use App\Models\User;
 use App\Services\Rewards\RewardsService;
 use Illuminate\Http\Request;
@@ -22,16 +23,16 @@ class MainController extends Controller
             return redirect()->route('admin.rewards.index'); // Redirect to admin page
         }
 
-        // Retrieve the user's credits
-        $userCredits = $user->credits;
+        // Retrieve the credits
+        $credits = Credits::first();
 
-        // Get rewards and credits
+        // Retrieve rewards
         $rewardService = new RewardsService();
         $rewards = $rewardService->getAllRewards();
 
         // Render Index page and pass user credits to the view
         return Inertia::render('Index', [
-            'userCredits' => $userCredits,
+            'credits' => $credits->amount,
             'rewards' => $rewards,
         ]);
     }

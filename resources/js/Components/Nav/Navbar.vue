@@ -3,7 +3,7 @@
     <nav class="m-4 border-b pb-2 flex justify-between h-32 md:hidden">
         <div>
             <h1 class="mb-4"><Link href="/" class="text-off-white text-6xl mb-6">Rewards<span class="text-yellow">23</span></Link></h1>
-            <p class="text-yellow text-3xl">Til rådighed: {{userCredits}} x coins</p>
+            <p class="text-yellow text-3xl">Til rådighed: {{credits}} x coins</p>
         </div>
         <div class="flex flex-col items-end justify-around">
             <!-- Only show admin page if user is admin -->
@@ -35,7 +35,7 @@
                 </Link>
             </div>
             <div>
-                <p class="text-yellow text-3xl">Til rådighed: {{userCredits}} x coins</p>
+                <p class="text-yellow text-3xl">Til rådighed: {{credits}} x coins</p>
             </div>
         </div>
     </nav>
@@ -48,7 +48,7 @@ export default {
         Link,
     },
     props: {
-        userCredits: Number
+        credits: Number
     }
 }
 </script>

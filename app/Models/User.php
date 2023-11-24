@@ -46,14 +46,14 @@ class User extends Authenticatable
     ];
 
     // Has many relationshop to purchases (users can have multiple purchases)
-    public function purchases()
+    public function votes()
     {
-        return $this->hasMany(Purchase::class);
+        return $this->hasMany(Vote::class);
     }
 
-    // Has many trough relationship (rewards through purchases), access to a users rewards
+    // Has many trough relationship (rewards through votes), access to a users votes
     public function rewards()
     {
-        return $this->hasManyThrough(Reward::class, Purchase::class);
+        return $this->hasManyThrough(Reward::class, Vote::class);
     }
 }

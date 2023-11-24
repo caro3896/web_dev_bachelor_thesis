@@ -14,13 +14,14 @@ class Reward extends Model
         'name',
         'description',
         'price',
-        'image'
+        'image',
+        'votes',
     ];
 
     // Has many relationship to (a reward can be associated with many purchases)
-    public function purchases()
+    public function votes()
     {
-        return $this->hasMany(Purchase::class);
+        return $this->hasMany(Vote::class);
     }
 
     // Adds a computed attribute with the image url

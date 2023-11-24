@@ -1,6 +1,6 @@
 <template>
 
-    <Navbar :userCredits="userCredits"/>
+    <Navbar :credits="credits"/>
 
     <main v-if="$page.component.startsWith('Admin/')" class="flex p-4 mx-auto">
         <Sidebar></Sidebar>
@@ -25,7 +25,7 @@ export default {
     Sidebar
 },
     props: {
-        userCredits: Number
+        credits: Number
     }
 }
 

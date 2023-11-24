@@ -9,7 +9,7 @@ export default {
     },
     props: {
         rewards: Object,
-        userCredits: Number
+        credits: Number
     },
     data() {
         return {
@@ -20,7 +20,7 @@ export default {
         // Filter rewards based on quantity and amount of credits if switch is active
         filteredRewards() {
             if (this.toggleActive) {
-                return this.rewards.filter(reward => this.userCredits >= reward.price);
+                return this.rewards.filter(reward => this.credits >= reward.price);
             } else {
                 return this.rewards;
             }
