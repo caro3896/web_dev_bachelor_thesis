@@ -1,10 +1,11 @@
 <script>
 import LinkButton from '../Buttons/LinkButton.vue';
+import Button from '../Buttons/Button.vue';
 import { router } from '@inertiajs/vue3';
 
 export default {
     components: {
-    LinkButton
+    Button
 },
     props: {
         deleteRoute: String
@@ -24,8 +25,8 @@ export default {
 </script>
 
 <template>
-    <LinkButton buttonStyle="bg-light-gray text-white" href="editRoute">
-        <img src="/icons/delete.svg" alt="">
+    <Button buttonStyle="bg-light-gray text-white" @click="deleteReward()">
+        <img src="/icons/delete.svg" alt="Trashcan icon">
         <p class="hidden md:block pl-2">Slet</p>
-    </LinkButton>
+    </Button>
 </template>

@@ -6,7 +6,7 @@ export default {
         buttonStyle: {
             type: String,
             default: 'bg-white text-gray'
-        }
+        },
     },
     components: {
         Link

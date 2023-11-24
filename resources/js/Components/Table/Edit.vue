@@ -6,14 +6,13 @@ export default {
         LinkButton
     },
     props: {
-        reward: Object,
         editRoute: String
     },
 }
 </script>
 
 <template>
-    <LinkButton href="editRoute">
+    <LinkButton :href="editRoute">
         <img src="/icons/edit.svg" alt="">
         <p class="hidden md:block pl-2">Rediger</p>
     </LinkButton>
