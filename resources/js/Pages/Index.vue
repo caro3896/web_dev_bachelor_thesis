@@ -40,7 +40,7 @@ export default {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <!-- List all rewards -->
-            <Reward v-for="data in filteredRewards" :key="data.id" :reward="data"></Reward>
+            <Reward v-for="data in filteredRewards" :key="data.id" :reward="data" :credits="credits"></Reward>
         </div>
     </section>
 </template>

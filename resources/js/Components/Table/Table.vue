@@ -25,6 +25,7 @@ export default {
               <th scope="col" class="px-6 py-4 hidden md:table-cell">Beskrivelse</th>
               <th scope="col" class="px-6 py-4 hidden md:table-cell">Billede</th>
               <th scope="col" class="px-6 py-4">Pris</th>
+              <th scope="col" class="px-6 py-4">Stemmer</th>
             </tr>
           </thead>
           <tbody>
@@ -33,7 +34,7 @@ export default {
               <td class="px-6 py-4 hidden md:table-cell">{{ reward.description }}</td>
               <td class="px-6 py-4 hidden md:table-cell"><img class="w-20 rounded" :src="'/storage/' + reward.image " alt=""></td>
               <td class="px-6 py-4">{{ reward.price }}</td>
-              <td class="px-6 py-4">{{ reward.quantity }}</td>
+              <td class="px-6 py-4">{{ reward.votes }}</td>
               <td>
                   <!-- Rediger -->
                   <Edit :editRoute="route('admin.rewards.reward.edit', { id: reward.id })"/>

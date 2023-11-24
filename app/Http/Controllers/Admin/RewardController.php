@@ -48,6 +48,7 @@ class RewardController extends Controller
         $newReward->name = $request->input('name');
         $newReward->description = $request->input('description');
         $newReward->price = $request->input('price');
+        $newReward->votes = 0;
 
         $image_path = '';
 
