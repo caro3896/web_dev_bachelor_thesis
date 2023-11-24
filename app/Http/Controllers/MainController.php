@@ -18,7 +18,7 @@ class MainController extends Controller
         $user = Auth::user();
 
         // Check if the user is an admin
-        if (Auth::user()->is_admin) {
+        if (Auth::user()->is_admin === 1) {
             return redirect()->route('admin.rewards.index'); // Redirect to admin page
         }
 
