@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\RewardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CreditsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MainController;
@@ -87,7 +88,12 @@ Route::middleware('auth')->group(function () {
 
         // Routes for purchases            
         Route::prefix('purchases')->name('puchases.')->group(function () {
-            Route::get('/', [PurchaseController::class, 'index'])->name('index'); // Default users page
+            Route::get('/', [PurchaseController::class, 'index'])->name('index'); // Default purchases page
+        });
+
+        // Routes for credits            
+        Route::prefix('credits')->name('credits.')->group(function () {
+            Route::get('/', [CreditsController::class, 'index'])->name('index'); // Default credits page
         });
     });
 });

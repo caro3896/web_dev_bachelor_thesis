@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Credits;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CreditsController extends Controller
 {
@@ -12,7 +14,11 @@ class CreditsController extends Controller
      */
     public function index()
     {
-        //
+        $credits = Credits::first();
+
+        return Inertia::render('Admin/Credits/Index', [
+            'credits' => $credits->amount
+        ]);
     }
 
     /**
