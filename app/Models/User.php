@@ -45,6 +45,20 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    // Registering Eloquent events using the boot method
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Event triggered when a user is being deleted
+        static::deleting(function ($user) {
+            // For each reward associated with the user, decrement the votes column
+            $user->votes->each(function ($vote) {
+                $vote->reward->decrement('votes');
+            });
+        });
+    }
+
     // Has many relationshop to purchases (users can have multiple purchases)
     public function votes()
     {

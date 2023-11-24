@@ -20,6 +20,24 @@ class Vote extends Model
         'created_at' => 'datetime:Y-m-d',
     ];
 
+    // Registering Eloquent events using the boot method
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Event triggered when a new vote is created
+        static::created(function ($vote) {
+            // Update the votes column in the associated Reward model (increment)
+            $vote->reward->increment('votes');
+        });
+
+        // Event triggered when a vote is deleted
+        static::deleted(function ($vote) {
+            // Update the votes column in the associated Reward model (decrement)
+            $vote->reward->decrement('votes');
+        });
+    }
+
     // A vote belongs to a reward
     public function reward()
     {

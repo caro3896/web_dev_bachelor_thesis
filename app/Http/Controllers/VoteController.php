@@ -32,7 +32,7 @@ class VoteController extends Controller
                 $existingVote->delete();
 
                 // Update the vote count on the reward
-                Reward::where('id', $rewardId)->decrement('votes');
+                // Reward::where('id', $rewardId)->decrement('votes');
 
                 DB::commit();
 
@@ -46,7 +46,7 @@ class VoteController extends Controller
             ]);
 
             // Update the vote count on the reward
-            Reward::where('id', $rewardId)->increment('votes');
+            // Reward::where('id', $rewardId)->increment('votes');
 
             DB::commit();
 

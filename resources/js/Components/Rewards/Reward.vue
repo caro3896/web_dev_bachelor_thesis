@@ -20,7 +20,7 @@ export default {
     },
     computed: {
         isAvailable() {
-            return this.reward.price < this.credits;
+            return this.reward.price <= this.credits;
         },
     },
     methods: {

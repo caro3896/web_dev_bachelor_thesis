@@ -18,7 +18,6 @@ export default {
                 name: '',
                 email:'',
                 password: '',
-                credits: 0,
                 admin:0
             })
         }
@@ -48,10 +47,6 @@ export default {
             <div class="mb-6">
                 <FormField type="password" name="password" label="password" placeholder="Indtast password"  v-model="form.password"></FormField>
                 <InputError :error="form.errors.password"></InputError>
-            </div>
-            <div class="mb-6">
-                <FormField type="number" name="credits" label="credits" placeholder="Indtast antal credits"  v-model="form.credits"></FormField>
-                <InputError :error="form.errors.credits"></InputError>
             </div>
             <div class="mb-6 w-56">
                 <label class="block mb-2 uppercase">Bruger type</label>

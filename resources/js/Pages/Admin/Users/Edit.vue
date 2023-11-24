@@ -21,7 +21,6 @@ export default {
                 id: this.user.id,
                 name: this.user.name,
                 email: this.user.email,
-                credits: this.user.credits,
                 // Old password not displayed
                 password: null,
                 admin: this.user.is_admin
@@ -63,10 +62,6 @@ export default {
                 name="password"
                 placeholder="Indtast nyt password"
                 v-model="form.password">
-            </div>
-            <div class="mb-6">
-                <FormField type="number" name="credits" label="credits" placeholder="Indtast antal credits"  v-model="form.credits"></FormField>
-                <InputError :error="form.errors.credits"></InputError>
             </div>
             <div class="mb-6 w-56">
                 <label class="block mb-2 uppercase">Bruger type</label>

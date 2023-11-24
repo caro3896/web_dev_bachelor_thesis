@@ -44,7 +44,6 @@ class UserController extends Controller
         $newUser->name = $request->input('name');
         $newUser->email = $request->input('email');
         $newUser->password = $request->input('password');
-        $newUser->credits = $request->input('credits');
         // Set admin to false as default if request is empty
         $newUser->is_admin = $request->input('admin', 0);
 
@@ -86,7 +85,6 @@ class UserController extends Controller
         if ($user) {
             $user->name = $request->input('name');
             $user->email = $request->input('email');
-            $user->credits = $request->input('credits');
             $user->is_admin = $request->input('admin');
 
             // Find password input

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\RewardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CreditsController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MainController;
