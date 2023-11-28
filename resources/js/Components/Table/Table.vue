@@ -53,7 +53,6 @@ export default {
             <tr>
               <th scope="col" class="px-6 py-4">Navn</th>
               <th scope="col" class="px-6 py-4">Email</th>
-              <th scope="col" class="px-6 py-4">Credits</th>
               <th scope="col" class="px-6 py-4">Bruger type</th>
             </tr>
           </thead>
@@ -61,7 +60,6 @@ export default {
             <tr  v-for="user in users" :key="user.id" class="border-b dark:border-neutral-500">
               <td class="px-6 py-4">{{ user.name }}</td>
               <td class="px-6 py-4">{{ user.email }}</td>
-              <td class="px-6 py-4">{{ user.credits }}</td>
               <td class="px-6 py-4">{{ user.is_admin ? 'Admin' : 'Standard' }}</td>
               <td>
                 <!-- Rediger -->
