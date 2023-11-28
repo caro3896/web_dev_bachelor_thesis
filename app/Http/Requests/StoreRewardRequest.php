@@ -23,7 +23,6 @@ class StoreRewardRequest extends FormRequest
     {
         // Validation rules for storing a reward
         return [
-            'id' => 'exists:App\Models\Reward,id',
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric',
@@ -35,7 +34,6 @@ class StoreRewardRequest extends FormRequest
     {
         // Error messages for storing a reward
         return [
-            'id.exists' => 'Reward ikke fundet',
             'name.required' => 'Indtast venligst navn på reward',
             'name.string' => 'Navn på reward skal være en tekst',
             'description.required' => 'Indtast venligst beskrivelse af reward',
