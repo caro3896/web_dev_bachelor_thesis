@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateRewardRequest;
 use App\Models\Reward;
 use App\Services\Rewards\RewardsService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -19,9 +20,9 @@ class RewardController extends Controller
     public function index()
     {
         // Get rewards
-        $rewardService = new RewardsService();
-        $rewards = $rewardService->getAllRewards();
-
+        // $rewardService = new RewardsService();
+        // $rewards = $rewardService->getAllRewards();
+        $rewards = Reward::get();
         // Render rewards page and send data
         return Inertia::render('Admin/Rewards/Index', [
             'rewards' => $rewards,
@@ -121,12 +122,11 @@ class RewardController extends Controller
      */
     public function destroy(Reward $reward)
     {
-        // Delete the image from storage
-        if ($reward->image) {
-            Storage::delete($reward->image);
+        // Delete the image from storage and from database
+        if (Storage::delete($reward->image)) {
+            $reward->delete();
+            return back()->with('success', "Reward '$reward->name' slettet");
         }
-        // Delete reward from database
-        $reward->delete();
-        return back()->with('success', "Reward '$reward->name' slettet");
+        return back()->withErrors('error', "Rewarden blev ikke slettet");
     }
 }
