@@ -40,8 +40,9 @@ export default {
     },
     methods: {
         addCredit() {
-            this.form.put(route('admin.credits.update'));
-            this.form.reset();
+            this.form.put(route('admin.credits.update'), {
+                onSuccess: () => this.form.reset(),
+            });
         }
     }
     

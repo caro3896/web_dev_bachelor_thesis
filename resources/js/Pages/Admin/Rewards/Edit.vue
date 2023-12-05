@@ -24,7 +24,7 @@ export default {
                 description: this.reward.description,
                 price: this.reward.price,
                 // Image is set to null
-                image: null,
+                image: this.reward.image,
             }),
             // New image preview null as default
             newImagePreview: null,
@@ -89,11 +89,11 @@ export default {
         <label class="block mb-2 uppercase">Billede</label>
         <!-- If no new image selected, show "old" image -->
         <div v-if="!imageSelected" class="mb-2">
-            <img :src="'/storage/' + reward.image" alt="Current Image" class="max-w-md h-80">
+            <img :src="'/storage/' + reward.image" alt="Current image of reward" class="max-w-md h-80">
         </div>
         <!-- If new image is selected show preview -->
         <div v-if="imageSelected" class="mb-2">
-            <img :src="newImagePreview" alt="New Image Preview" class="max-w-md h-80">
+            <img :src="newImagePreview" alt="New Image Preview of reward" class="max-w-md h-80">
         </div>
         <InputError :error="form.errors.image"></InputError>
         <!-- When a new file is selected, call onImageChange() -->
