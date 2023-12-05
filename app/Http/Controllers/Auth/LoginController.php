@@ -47,9 +47,13 @@ class LoginController extends Controller
     }
 
     // Logout and redirect
-    public function destroy()
+    public function destroy(Request $request)
     {
         Auth::logout();
+        // Invalidate the session
+        $request->session()->invalidate();
+        // Regenerate the CSFR token
+        $request->session()->regenerateToken();
         return redirect('/');
     }
 }
