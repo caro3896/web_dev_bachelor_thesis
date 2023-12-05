@@ -24,7 +24,7 @@ export default {
                 description: this.reward.description,
                 price: this.reward.price,
                 // Image is set to null
-                image: this.reward.image,
+                image: null,
             }),
             // New image preview null as default
             newImagePreview: null,
