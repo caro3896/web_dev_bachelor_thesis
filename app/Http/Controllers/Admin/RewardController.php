@@ -20,8 +20,6 @@ class RewardController extends Controller
     public function index()
     {
         // Get rewards
-        // $rewardService = new RewardsService();
-        // $rewards = $rewardService->getAllRewards();
         $rewards = Reward::get();
         // Render rewards page and send data
         return Inertia::render('Admin/Rewards/Index', [

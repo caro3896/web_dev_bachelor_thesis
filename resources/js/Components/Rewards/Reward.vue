@@ -66,9 +66,10 @@ export default {
             </div>
         </div>
         <div v-else>
-            <div class="absolute inset-0 flex flex-col items-center justify-center bg-gray bg-opacity-50 text-white text-center rounded-lg">
-                <div class="absolute top-0 left-0 flex justify-end p-3 w-full opacity-50">
-                    <p class="bg-yellow rounded-2xl py-1 px-3 text-gray">{{ reward.price }} x coins</p>
+            <div class="absolute inset-0 flex flex-col items-center justify-center bg-gray bg-opacity-60 text-white text-center rounded-lg">
+                <div class="absolute top-0 left-0 flex justify-between p-3 w-full">
+                    <div class="bg-gray rounded-2xl py-1 px-3 flex"> {{ reward.votes }} <img src="/icons/like.svg" class="ml-2" alt="Thumbs up icon"></div>
+                    <p class="bg-yellow rounded-2xl py-1 px-3 text-gray opacity-50">{{ reward.price }} x coins</p>
                  </div>
                 <h2 class="text-2xl mb-2 opacity-100">{{ reward.name }}</h2>
                 <p class="">(Ikke tilgængelig)</p>

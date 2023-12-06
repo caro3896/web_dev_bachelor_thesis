@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Credits;
-use App\Models\User;
+use App\Models\Reward;
 use App\Services\Rewards\RewardsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,9 +19,8 @@ class MainController extends Controller
         // Retrieve the credits
         $credits = Credits::first();
 
-        // Retrieve rewards
-        $rewardService = new RewardsService();
-        $rewards = $rewardService->getAllRewards();
+        // Retrieve rewards in ascending order by price
+        $rewards = Reward::orderBy('price')->get();
 
         // Render Index page and pass user credits to the view
         return Inertia::render('Index', [
