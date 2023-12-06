@@ -49,10 +49,6 @@ Route::middleware('auth')->group(function () {
 
     // Routes to admin pages - only accessible if admin -> using middleware 'Admin'
     Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
-        // Redirect /admin to /admin/dashboard
-        Route::get('/', function () {
-            return redirect()->route('admin.rewards.index');
-        });
 
         // Routes for rewards
         Route::prefix('rewards')->name('rewards.')->group(function () {
