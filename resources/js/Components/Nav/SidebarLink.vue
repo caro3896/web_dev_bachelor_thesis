@@ -1,6 +1,6 @@
 <template>
-        <Link class="flex items-center text-xl group pb-12">
-          <img :src="imageSrc" :alt="altText" class="md:w-6 md:h-6 mr-2 group-hover:fill-yellow" />
+        <Link class="inline-flex items-center text-xl group pb-12">
+          <img :src="imageSrc" :alt="altText" class="md:w-6 md:h-6 mr-2 fill-white" />
           <p class="hidden md:block group-hover:text-yellow"><slot/></p>
         </Link>
   </template>
