@@ -2,11 +2,14 @@
 
     <Navbar :credits="credits"/>
 
-    <main class="p-4 mx-auto">
-        <slot/>
-    </main>
-
-
+    <div class="flex p-4">
+        <aside>
+            <Sidebar></Sidebar>
+        </aside>
+        <main class="p-8 mx-auto flex-auto">
+            <slot/>
+        </main>
+    </div>
 </template>
 
 <script>

@@ -1,15 +1,6 @@
 <template>
-    <!-- <section class="flex h-max">
-      <div class="flex flex-col border-r border-r-1 py-8 pl-4 pr-10">
-        <SidebarLink href="/admin/rewards" :imageSrc="'/icons/reward.svg'" altText="Icon for rewards" :class="{'text-yellow': $page.component.startsWith('Admin/Rewards') }">Rewards</SidebarLink>
-        <SidebarLink href="/admin/users" :imageSrc="'/icons/users.svg'" altText="Icon for users" :class="{'text-yellow': $page.component.startsWith('Admin/Users') }">Brugere</SidebarLink>
-        <SidebarLink href="/admin/purchases" :imageSrc="'/icons/purchases.svg'" altText="Icon for purchases" :class="{'text-yellow': $page.component.startsWith('Admin/Purchases') }">Indløste rewards</SidebarLink>
-        <SidebarLink href="/admin/credits" :imageSrc="'/icons/credits.svg'" altText="Icon for credits" :class="{'text-yellow': $page.component.startsWith('Admin/Credits') }">Credits</SidebarLink>
-    </div>
-    </section> -->
-
-    <section class="min-h-full">
-      <div class="flex flex-col border-r py-8 pr-10 pl-4 min-w-max">
+    <div class="h-[calc(100vh-12rem)] sticky top-40 flex flex-col border-r py-8 pr-10 pl-4 min-w-max">
+      <!-- <div class="flex flex-col border-r py-8 pr-10 pl-4 min-w-max min-h-full"> -->
         <Link href="/admin/rewards" class="text-xl pb-12 inline-flex items-center group" :class="{'text-yellow': $page.component.startsWith('Admin/Rewards') }">
           <svg class="fill-white group-hover:fill-yellow mr-3 min-w-max" :class="{'fill-yellow': $page.component.startsWith('Admin/Rewards') }" xmlns="http://www.w3.org/2000/svg" width="19.5" height="17.063" viewBox="0 0 19.5 17.063">
             <path id="Icon_awesome-gift" data-name="Icon awesome-gift" d="M1.219,18.094a1.217,1.217,0,0,0,1.219,1.219H8.531V13.219H1.219Zm9.75,1.219h6.094a1.217,1.217,0,0,0,1.219-1.219V13.219H10.969ZM18.281,7.125h-1.6A3.321,3.321,0,0,0,17.062,5.6,3.357,3.357,0,0,0,13.711,2.25c-1.584,0-2.609.811-3.923,2.6-1.314-1.79-2.338-2.6-3.923-2.6A3.357,3.357,0,0,0,2.514,5.6,3.274,3.274,0,0,0,2.9,7.125H1.219A1.217,1.217,0,0,0,0,8.344v3.047A.611.611,0,0,0,.609,12H18.891a.611.611,0,0,0,.609-.609V8.344A1.217,1.217,0,0,0,18.281,7.125Zm-12.42,0a1.523,1.523,0,0,1,0-3.047c.758,0,1.318.126,3.279,3.047H5.861Zm7.85,0H10.432c1.958-2.914,2.5-3.047,3.279-3.047a1.523,1.523,0,0,1,0,3.047Z" transform="translate(0 -2.25)"/>
@@ -35,17 +26,14 @@
           <p class="group-hover:text-yellow hidden md:block">Credits</p>
         </Link>
       </div>
-    </section>
   </template>
   
   <script>
-  import SidebarLink from './SidebarLink.vue';
   import { Link } from '@inertiajs/vue3';
   
   export default {
     components: {
         Link,
-        SidebarLink
     },
   };
   </script>

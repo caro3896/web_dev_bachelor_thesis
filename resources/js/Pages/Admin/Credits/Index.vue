@@ -17,12 +17,12 @@
 
 <script>
 
-import MainLayout from '../../../Layouts/MainLayout.vue';
+import AdminLayout from '../../../Layouts/AdminLayout.vue';
 import Button from '../../../Components/Buttons/Button.vue';
 import FormField from '../../../Components/Form/FormField.vue';
 
 export default {
-    layout: MainLayout,
+    layout: AdminLayout,
     props: {
         credits: Number,
     },

@@ -10,12 +10,12 @@
 
 <script>
 
-import MainLayout from '../../../Layouts/MainLayout.vue';
+import AdminLayout from '../../../Layouts/AdminLayout.vue';
 import Table from '../../../Components/Table/Table.vue';
 import LinkButton from '../../../Components/Buttons/LinkButton.vue';
 
 export default {
-    layout: MainLayout,
+    layout: AdminLayout,
     props: {
         users: Array,
     },

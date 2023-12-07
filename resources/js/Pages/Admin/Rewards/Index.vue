@@ -13,14 +13,14 @@
 
 <script>
 
-import MainLayout from '../../../Layouts/MainLayout.vue';
+import AdminLayout from '../../../Layouts/AdminLayout.vue';
 import Table from '../../../Components/Table/Table.vue';
 import LinkButton from '../../../Components/Buttons/LinkButton.vue';
 import Button from '../../../Components/Buttons/Button.vue';
 import { router } from '@inertiajs/vue3';
 
 export default {
-    layout: MainLayout,
+    layout: AdminLayout,
     props: {
         rewards: Array,
     },
