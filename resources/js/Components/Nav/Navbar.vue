@@ -7,13 +7,13 @@
         </div>
         <div class="flex flex-col items-end justify-around">
             <!-- Only show admin page if user is admin -->
-            <Link v-if="$page.props.auth.user.admin" href="/admin" class="hover:underline text-gray inline-flex bg-white rounded-full py-3 px-5 " :class="{'underline': $page.component === 'Admin' }">
-                    <img src="/icons/profile.svg" alt="Silhouette of person" class="mr-2"> 
+            <Link v-if="$page.props.auth.user.admin" href="/admin" class="text-gray inline-flex bg-white rounded-full py-3 px-5 " :class="{'bg-yellow': $page.component.startsWith('Admin/') }">
+                    <img src="/icons/profile.svg" alt="Silhouette of person"> 
             </Link>
             <!-- TODO: Else: show user dashboard -->
             <!-- Only show logout if user is logged in -->
-            <Link v-if="$page.props.auth" href="/logout" method="POST" as="button" class="hover:underline inline-flex">
-                <img src="/icons/logout.svg" alt="" class="mr-2"> 
+            <Link v-if="$page.props.auth" href="/logout" method="POST" as="button">
+                <img src="/icons/logout.svg" alt="" class="mr-2">
             </Link>
         </div>
     </nav>
@@ -29,9 +29,11 @@
                     <p class="hidden md:block">Admin</p>
                 </Link>
                 <!-- Only show logout if user is logged in -->
-                <Link v-if="$page.props.auth" href="/logout" method="POST" as="button" class="hover:text-yellow hover:fill-yellow inline-flex">
-                    <img src="/icons/logout.svg" alt="Lock icon" class="mr-2"> 
-                    <p class="hidden md:block">Log af</p>
+                <Link v-if="$page.props.auth" href="/logout" method="POST" as="button" class="inline-flex items-center group">
+                    <svg class="mr-2 fill-white group-hover:fill-yellow" xmlns="http://www.w3.org/2000/svg" width="15.75" height="18" viewBox="0 0 15.75 18">
+                        <path id="Icon_awesome-lock" data-name="Icon awesome-lock" d="M14.063,7.875h-.844V5.344a5.344,5.344,0,0,0-10.687,0V7.875H1.688A1.688,1.688,0,0,0,0,9.563v6.75A1.688,1.688,0,0,0,1.688,18H14.063a1.688,1.688,0,0,0,1.688-1.687V9.563A1.688,1.688,0,0,0,14.063,7.875Zm-3.656,0H5.344V5.344a2.531,2.531,0,0,1,5.063,0Z"/>
+                    </svg>
+                    <p class="group-hover:text-yellow">Log af</p>
                 </Link>
             </div>
             <div>

@@ -52,7 +52,7 @@ class VoteController extends Controller
     }
 
     /**
-     * Handle votes
+     * Handle votes reset
      */
 
     public function reset()
@@ -64,7 +64,7 @@ class VoteController extends Controller
 
             // Reset the votes column to 0 for all rewards
             Reward::query()->update(['votes' => 0]);
-            
+
             DB::commit();
 
             return back()->with(['success' => 'Alle stemmer blev nulstillet']);
