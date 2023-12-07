@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
 
     // Routes to admin pages - only accessible if admin -> using middleware 'Admin'
     Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', [MainController::class, 'admin'])->name('admin');
 
         // Routes for rewards
         Route::prefix('rewards')->name('rewards.')->group(function () {
@@ -92,5 +93,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/', [CreditsController::class, 'index'])->name('index'); // Default credits page
             Route::put('/update', [CreditsController::class, 'update'])->name('update');
         });
+
+        // Route for votes
+        Route::put('/reset', [VoteController::class, 'reset'])->name('reset');
+        Route::put('{rewardId:id}/vote', [VoteController::class, 'vote'])->name('vote');
     });
 });

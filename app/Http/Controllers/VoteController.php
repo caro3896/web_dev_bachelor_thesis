@@ -31,9 +31,6 @@ class VoteController extends Controller
                 // If the user has already voted, remove the vote
                 $existingVote->delete();
 
-                // Update the vote count on the reward
-                // Reward::where('id', $rewardId)->decrement('votes');
-
                 DB::commit();
 
                 return back()->with('success', "Stemme på '$reward->name' fjernet");
@@ -45,15 +42,35 @@ class VoteController extends Controller
                 'reward_id' => $rewardId,
             ]);
 
-            // Update the vote count on the reward
-            // Reward::where('id', $rewardId)->increment('votes');
-
             DB::commit();
 
             return back()->with('success', "Du har stemt på '$reward->name'");
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors(['error' => 'Noget gik galt, prøv igen senere']);
+        }
+    }
+
+    /**
+     * Handle votes
+     */
+
+    public function reset()
+    {
+        try {
+            DB::beginTransaction();
+            // Delete all records from the votes table
+            Vote::truncate();
+
+            // Reset the votes column to 0 for all rewards
+            Reward::query()->update(['votes' => 0]);
+            
+            DB::commit();
+
+            return back()->with(['success' => 'Alle stemmer blev nulstillet']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withErrors(['error' => 'Noget gik galt']);
         }
     }
 }

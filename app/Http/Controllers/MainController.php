@@ -28,4 +28,9 @@ class MainController extends Controller
             'rewards' => $rewards,
         ]);
     }
+
+    public function admin()
+    {
+        return redirect()->route('admin.rewards.index'); // Redirect to admin page
+    }
 }
