@@ -20,7 +20,7 @@ class RedeemController extends Controller
         $redeemed = Redeemed::with('reward')->latest()->get();
 
         // Render users page and send data
-        return Inertia::render('Admin/Redeemed/Index', [
+        return Inertia::render('Redeemed', [
             'redeemed' => $redeemed
         ]);
     }

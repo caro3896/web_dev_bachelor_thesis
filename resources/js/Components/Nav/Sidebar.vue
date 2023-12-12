@@ -1,6 +1,5 @@
 <template>
     <div v-if="$page.props.auth.user.admin" class="h-[calc(100vh-12rem)] sticky top-40 flex flex-col border-r py-8 pr-10 pl-4 min-w-max">
-      <!-- <div class="flex flex-col border-r py-8 pr-10 pl-4 min-w-max min-h-full"> -->
         <Link href="/admin/rewards" class="text-xl pb-12 inline-flex items-center group" :class="{'text-yellow': $page.component.startsWith('Admin/Rewards') }">
           <svg class="fill-white group-hover:fill-yellow mr-3 min-w-max" :class="{'fill-yellow': $page.component.startsWith('Admin/Rewards') }" xmlns="http://www.w3.org/2000/svg" width="19.5" height="17.063" viewBox="0 0 19.5 17.063">
             <path id="Icon_awesome-gift" data-name="Icon awesome-gift" d="M1.219,18.094a1.217,1.217,0,0,0,1.219,1.219H8.531V13.219H1.219Zm9.75,1.219h6.094a1.217,1.217,0,0,0,1.219-1.219V13.219H10.969ZM18.281,7.125h-1.6A3.321,3.321,0,0,0,17.062,5.6,3.357,3.357,0,0,0,13.711,2.25c-1.584,0-2.609.811-3.923,2.6-1.314-1.79-2.338-2.6-3.923-2.6A3.357,3.357,0,0,0,2.514,5.6,3.274,3.274,0,0,0,2.9,7.125H1.219A1.217,1.217,0,0,0,0,8.344v3.047A.611.611,0,0,0,.609,12H18.891a.611.611,0,0,0,.609-.609V8.344A1.217,1.217,0,0,0,18.281,7.125Zm-12.42,0a1.523,1.523,0,0,1,0-3.047c.758,0,1.318.126,3.279,3.047H5.861Zm7.85,0H10.432c1.958-2.914,2.5-3.047,3.279-3.047a1.523,1.523,0,0,1,0,3.047Z" transform="translate(0 -2.25)"/>
@@ -26,6 +25,7 @@
           <p class="group-hover:text-yellow hidden md:block">Credits</p>
         </Link>
       </div>
+
       <div v-else class="h-[calc(100vh-12rem)] sticky top-40 flex flex-col border-r py-8 pr-10 pl-4 min-w-max">
         <Link href="/profile" class="text-xl pb-12 inline-flex items-center group" :class="{'text-yellow': $page.component.startsWith('Profile') }">
           <svg class="fill-white group-hover:fill-yellow mr-3 min-w-max" :class="{'fill-yellow': $page.component.startsWith('Profile') }" xmlns="http://www.w3.org/2000/svg" width="17.94" height="17.94" viewBox="0 0 17.94 17.94">
@@ -38,6 +38,12 @@
             <path id="Icon_awesome-gift" data-name="Icon awesome-gift" d="M1.219,18.094a1.217,1.217,0,0,0,1.219,1.219H8.531V13.219H1.219Zm9.75,1.219h6.094a1.217,1.217,0,0,0,1.219-1.219V13.219H10.969ZM18.281,7.125h-1.6A3.321,3.321,0,0,0,17.062,5.6,3.357,3.357,0,0,0,13.711,2.25c-1.584,0-2.609.811-3.923,2.6-1.314-1.79-2.338-2.6-3.923-2.6A3.357,3.357,0,0,0,2.514,5.6,3.274,3.274,0,0,0,2.9,7.125H1.219A1.217,1.217,0,0,0,0,8.344v3.047A.611.611,0,0,0,.609,12H18.891a.611.611,0,0,0,.609-.609V8.344A1.217,1.217,0,0,0,18.281,7.125Zm-12.42,0a1.523,1.523,0,0,1,0-3.047c.758,0,1.318.126,3.279,3.047H5.861Zm7.85,0H10.432c1.958-2.914,2.5-3.047,3.279-3.047a1.523,1.523,0,0,1,0,3.047Z" transform="translate(0 -2.25)"/>
           </svg>
           <p class="group-hover:text-yellow hidden md:block">Indløste rewards</p>
+        </Link>
+        <Link href="/settings" class="text-xl pb-12 inline-flex items-center group" :class="{'text-yellow': $page.component.startsWith('Settings') }">
+          <svg class="fill-white group-hover:fill-yellow mr-3 min-w-max" :class="{'fill-yellow': $page.component.startsWith('Settings') }" xmlns="http://www.w3.org/2000/svg" width="17.94" height="17.939" viewBox="0 0 17.94 17.939">
+            <path id="Icon_ionic-md-settings" data-name="Icon ionic-md-settings" d="M19.157,13.242a5.609,5.609,0,0,0,.046-.9c0-.314-.046-.583-.046-.9l1.926-1.48a.412.412,0,0,0,.092-.583L19.34,6.29a.447.447,0,0,0-.551-.18l-2.294.9a6.676,6.676,0,0,0-1.559-.9l-.321-2.377a.492.492,0,0,0-.459-.359h-3.67a.492.492,0,0,0-.459.359L9.661,6.111a7.768,7.768,0,0,0-1.56.9l-2.294-.9a.43.43,0,0,0-.551.18L3.422,9.385a.542.542,0,0,0,.092.583l1.973,1.48c0,.314-.046.583-.046.9s.046.583.046.9L3.56,14.722a.412.412,0,0,0-.092.583L5.3,18.4a.447.447,0,0,0,.551.18l2.294-.9a6.675,6.675,0,0,0,1.559.9l.367,2.377a.445.445,0,0,0,.459.359H14.2a.492.492,0,0,0,.459-.359l.367-2.377a7.763,7.763,0,0,0,1.559-.9l2.294.9a.43.43,0,0,0,.551-.18L21.267,15.3a.541.541,0,0,0-.092-.583Zm-6.835,2.242a3.14,3.14,0,1,1,3.211-3.139A3.156,3.156,0,0,1,12.322,15.484Z" transform="translate(-3.375 -3.375)"/>
+          </svg>
+          <p class="group-hover:text-yellow hidden md:block">Indstillinger</p>
         </Link>
       </div>
   </template>

@@ -19,4 +19,16 @@ class ProfileController extends Controller
             'user' => $user
         ]);
     }
+
+    public function edit()
+    {
+        $user = Auth::user();
+        // Get all purchases - latest first 
+        // $redeemed = Redeemed::with('reward')->latest()->get();
+
+        // Render users page and send data
+        return Inertia::render('Settings', [
+            'user' => $user
+        ]);
+    }
 }

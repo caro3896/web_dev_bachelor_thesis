@@ -49,6 +49,8 @@ Route::middleware('auth')->group(function () {
 
     // Route to profile page
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/redeemed', [RedeemController::class, 'index'])->name('index');
+    Route::get('/settings', [ProfileController::class, 'edit'])->name('edit');
 
     // Route to handle vote
     Route::put('{rewardId:id}/vote', [VoteController::class, 'vote'])->name('vote');
