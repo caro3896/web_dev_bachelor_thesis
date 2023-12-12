@@ -60,7 +60,7 @@ class User extends Authenticatable
         });
     }
 
-    // Has many relationshop to purchases (users can have multiple purchases)
+    // Has many relationshop to votes (users can have multiple votes)
     public function votes()
     {
         return $this->hasMany(Vote::class);

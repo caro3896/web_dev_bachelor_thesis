@@ -16,9 +16,14 @@ class Reward extends Model
         'price',
         'image',
         'votes',
+        'redeemed'
     ];
 
-    // Has many relationship to (a reward can be associated with many purchases)
+    protected $casts = [
+        'redeemed' => 'boolean'
+    ];
+
+    // Has many relationship to votes (a reward can be associated with many votes)
     public function votes()
     {
         return $this->hasMany(Vote::class);

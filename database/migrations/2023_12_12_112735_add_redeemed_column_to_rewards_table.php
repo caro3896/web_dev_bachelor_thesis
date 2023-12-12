@@ -11,15 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rewards', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->integer('price');
-            $table->string('image')->nullable();
-            $table->integer('votes')->nullable();
+        Schema::table('rewards', function (Blueprint $table) {
             $table->boolean('redeemed')->default(false);
-            $table->timestamps();
         });
     }
 
@@ -28,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rewards');
+        Schema::table('rewards', function (Blueprint $table) {
+            $table->dropColumn('redeemed');
+        });
     }
 };

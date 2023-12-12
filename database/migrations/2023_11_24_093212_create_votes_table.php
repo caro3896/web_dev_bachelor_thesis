@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             // Add foreign key for reward_id
             $table->unsignedBigInteger('reward_id')->nullable();
-            $table->foreign('reward_id')->references('id')->on('rewards')->onDelete('set null');
+            $table->foreign('reward_id')->references('id')->on('rewards')->onDelete('cascade');
 
             // Opret compound key
             $table->primary(['user_id', 'reward_id']);

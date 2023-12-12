@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Credits;
 use App\Models\Redeemed;
 use App\Models\Reward;
 use Illuminate\Http\Request;
@@ -23,37 +24,38 @@ class RedeemController extends Controller
             'redeemed' => $redeemed
         ]);
     }
+
     public function redeem(string $id)
     {
-        // Get the logged in user
-        $user = Auth::user();
-
-        // Find reward
-        $reward = Reward::findOrFail($id);
-
-        // Check if user has enough credits
-        if ($user->credits < $reward->price) {
-            return back()->withErrors(['error' => "Ikke nok credits til at købe denne reward"]);
-        }
-
-        // Begin transaction
-        DB::beginTransaction();
-
         try {
-            // Subtract the price of the reward and decrease quantity
-            // $user->decrement('credits', $reward->price);
-            $user->credits -= $reward->price;
-            $user->save();
+            // Begin transaction
+            DB::beginTransaction();
 
-            // Create a record in the Purchases table
-            Redeemed::create([
-                'user_id' => $user->id,
-                'reward_id' => $reward->id,
+            // Find reward
+            $reward = Reward::find($id);
 
-            ]);
+            if ($reward) {
+                $credits = Credits::first();
 
-            // Commit the transaction
-            DB::commit();
+                // Check if there is enough credits
+                if ($credits->amount >= $reward->price) {
+                    // Deduct the price from the credits
+                    $credits->amount -= $reward->price;
+                    $credits->save();
+
+                    // Record the redeemed reward in the redeemed table
+                    Redeemed::create([
+                        'reward_id' => $id,
+                    ]);
+
+                    // Set the redeemed column to true
+                    $reward->update(['redeemed' => true]);
+
+                    DB::commit();
+
+                    return back()->with('success', 'Rewarden blev indløst');
+                }
+            }
         } catch (\Exception $ex) {
             Log::error('Purchase failed: ' . $ex->getMessage());
             DB::rollBack();

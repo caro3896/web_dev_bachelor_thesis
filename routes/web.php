@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
 
     // Route to handle vote
     Route::put('{rewardId:id}/vote', [VoteController::class, 'vote'])->name('vote');
+    Route::put('{rewardId:id}/redeem', [RedeemController::class, 'redeem'])->name('redeem');
 
     // Routes to admin pages - only accessible if admin -> using middleware 'Admin'
     Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
