@@ -78,7 +78,12 @@ export default {
         <div v-else>
             <div class="absolute inset-0 flex flex-col items-center justify-center bg-gray bg-opacity-60 text-white text-center rounded-lg">
                 <div class="absolute top-0 left-0 flex justify-between p-3 w-full">
-                    <div @click="vote(reward)" class="bg-gray rounded-2xl py-1 px-3 flex"> {{ reward.votes }} <img src="/icons/like.svg" class="ml-2" alt="Thumbs up icon"></div>
+                    <div @click="vote(reward)" class="bg-gray rounded-2xl py-1 px-3 flex items-center">
+                    <p>{{ reward.votes }}</p>
+                    <svg class="ml-2" :class="{ 'stroke-white fill-none': !reward.hasVoted, 'fill-white stroke-gray text-gray-500': reward.hasVoted }" xmlns="http://www.w3.org/2000/svg" width="15.329" height="15.557" viewBox="0 0 15.329 15.557">
+                        <path id="Icon_feather-thumbs-up" data-name="Icon feather-thumbs-up" d="M11.734,8.095V5.183A2.183,2.183,0,0,0,9.55,3L6.639,9.55v8.006h8.21A1.456,1.456,0,0,0,16.3,16.319l1-6.55a1.456,1.456,0,0,0-1.456-1.674ZM6.639,17.557H4.456A1.456,1.456,0,0,1,3,16.1V11.006A1.456,1.456,0,0,1,4.456,9.55H6.639" transform="translate(-2.5 -2.5)"/>
+                    </svg>
+                </div>
                     <p class="bg-yellow rounded-2xl py-1 px-3 text-gray opacity-50">{{ reward.price }} x coins</p>
                  </div>
                 <h2 class="text-2xl mb-2 opacity-100">{{ reward.name }}</h2>

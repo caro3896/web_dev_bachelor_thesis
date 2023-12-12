@@ -23,7 +23,7 @@ class RedeemController extends Controller
             'redeemed' => $redeemed
         ]);
     }
-    public function buy(string $id)
+    public function redeem(string $id)
     {
         // Get the logged in user
         $user = Auth::user();
