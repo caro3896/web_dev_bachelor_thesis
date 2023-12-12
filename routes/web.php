@@ -1,14 +1,16 @@
 <?php
 
+use App\Http\Controllers\Admin\CreditsController;
 use App\Http\Controllers\Admin\RewardController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\CreditsController;
-use App\Http\Controllers\RedeemController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RedeemController;
 use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -41,8 +43,12 @@ Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth')->
 Route::middleware('auth')->group(function () {
 
     // Routes for regular user
+
     // Route to main page/index
     Route::get('/', [MainController::class, 'index'])->name('index');
+
+    // Route to profile page
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
     // Route to handle vote
     Route::put('{rewardId:id}/vote', [VoteController::class, 'vote'])->name('vote');

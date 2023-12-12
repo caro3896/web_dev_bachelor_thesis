@@ -10,7 +10,10 @@
             <Link v-if="$page.props.auth.user.admin" href="/admin" class="text-gray inline-flex bg-white rounded-full py-3 px-5 " :class="{'bg-yellow': $page.component.startsWith('Admin/') }">
                     <img src="/icons/profile.svg" alt="Silhouette of person"> 
             </Link>
-            <!-- TODO: Else: show user dashboard -->
+            <!-- Else: show user dashboard -->
+            <Link v-else href="/profile" class="text-gray inline-flex bg-white rounded-full py-3 px-5 " :class="{'bg-yellow': $page.component.startsWith('Admin/') }">
+                    <img src="/icons/profile.svg" alt="Silhouette of person"> 
+            </Link>
             <!-- Only show logout if user is logged in -->
             <Link v-if="$page.props.auth" href="/logout" method="POST" as="button">
                 <img src="/icons/logout.svg" alt="" class="mr-2">
@@ -27,6 +30,10 @@
                 <Link v-if="$page.props.auth.user.admin" href="/admin/rewards" class="hover:bg-yellow text-gray inline-flex bg-white rounded-full py-3 px-5 md:mr-6" :class="{'bg-yellow': $page.component.startsWith('Admin/') }">
                     <img src="/icons/profile.svg" alt="Silhouette of person" class="mr-2"> 
                     <p class="hidden md:block">Admin</p>
+                </Link>
+                 <!-- Else: show user dashboard -->
+                <Link v-else href="/profile" class="text-gray inline-flex bg-white rounded-full py-3 px-5 md:mr-6" :class="{'bg-yellow': $page.component.startsWith('Admin/') }">
+                    <img src="/icons/profile.svg" alt="Silhouette of person"> 
                 </Link>
                 <!-- Only show logout if user is logged in -->
                 <Link v-if="$page.props.auth" href="/logout" method="POST" as="button" class="inline-flex items-center group">
