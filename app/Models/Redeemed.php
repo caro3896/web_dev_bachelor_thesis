@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Purchase extends Model
+class Redeemed extends Model
 {
     use HasFactory;
 
     // protected $dateFormat = 'U';
+    protected $table = 'redeemed';
 
     protected $fillable = [
         'reward_id',

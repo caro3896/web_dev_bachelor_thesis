@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Purchase;
+use App\Models\Redeemed;
 use App\Models\Reward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,17 +10,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
-class PurchaseController extends Controller
+class RedeemController extends Controller
 {
     public function index()
     {
 
         // Get all purchases - latest first 
-        $purchases = Purchase::with('user', 'reward')->latest()->get();
+        $redeemed = Redeemed::latest()->get();
 
         // Render users page and send data
-        return Inertia::render('Admin/Purchases/Index', [
-            'purchases' => $purchases
+        return Inertia::render('Admin/Redeemed/Index', [
+            'redeemed' => $redeemed
         ]);
     }
     public function buy(string $id)
@@ -46,7 +46,7 @@ class PurchaseController extends Controller
             $user->save();
 
             // Create a record in the Purchases table
-            Purchase::create([
+            Redeemed::create([
                 'user_id' => $user->id,
                 'reward_id' => $reward->id,
 

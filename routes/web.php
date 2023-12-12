@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\RewardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CreditsController;
-use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\RedeemController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MainController;
@@ -83,9 +83,9 @@ Route::middleware('auth')->group(function () {
             );
         });
 
-        // Routes for purchases            
-        Route::prefix('purchases')->name('puchases.')->group(function () {
-            Route::get('/', [PurchaseController::class, 'index'])->name('index'); // Default purchases page
+        // Routes for redeemed rewards           
+        Route::prefix('redeemed')->name('redeemed.')->group(function () {
+            Route::get('/', [RedeemController::class, 'index'])->name('index'); // Default purchases page
         });
 
         // Routes for credits            
