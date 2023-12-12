@@ -22,6 +22,11 @@ class MainController extends Controller
         // Retrieve rewards in ascending order by price
         $rewards = Reward::orderBy('price')->get();
 
+        // Fetch voting status for each reward
+        foreach ($rewards as $reward) {
+            $reward->hasVoted = $reward->votes()->where('user_id', auth()->id())->exists();
+        }
+
         // Render Index page and pass user credits to the view
         return Inertia::render('Index', [
             'credits' => $credits->amount,
