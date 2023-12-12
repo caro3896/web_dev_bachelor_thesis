@@ -17,7 +17,7 @@ class RedeemController extends Controller
     {
 
         // Get all purchases - latest first 
-        $redeemed = Redeemed::latest()->get();
+        $redeemed = Redeemed::with('reward')->latest()->get();
 
         // Render users page and send data
         return Inertia::render('Admin/Redeemed/Index', [

@@ -29,6 +29,12 @@ class Reward extends Model
         return $this->hasMany(Vote::class);
     }
 
+    // Has one relationship to redeemed (a reward can have at most one redemption)
+    public function redeemed()
+    {
+        return $this->hasOne(Redeemed::class);
+    }
+
     // Adds a computed attribute with the image url
     protected $appends = ['image_url'];
 

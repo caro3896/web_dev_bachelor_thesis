@@ -1,7 +1,7 @@
 <template>
     <h2 class="text-3xl pb-6">Indløste rewards</h2>
     <!-- <Table :purchases="purchases"></Table> -->
-    <Table :purchases="purchases"></Table>
+    <Table :redeemed="redeemed"></Table>
    
 </template>
 
@@ -14,7 +14,7 @@ import LinkButton from '../../../Components/Buttons/LinkButton.vue';
 export default {
     layout: AdminLayout,
     props: {
-        purchases: Array,
+        redeemed: Array,
     },
     components: {
         Table,

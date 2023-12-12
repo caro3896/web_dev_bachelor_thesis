@@ -20,7 +20,8 @@ class RewardController extends Controller
     public function index()
     {
         // Get rewards
-        $rewards = Reward::get();
+        $rewards = Reward::where('redeemed', false)->get();
+
         // Render rewards page and send data
         return Inertia::render('Admin/Rewards/Index', [
             'rewards' => $rewards,

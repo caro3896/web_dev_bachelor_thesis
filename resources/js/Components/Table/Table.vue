@@ -10,7 +10,7 @@ export default {
     props: {
         rewards: Array,
         users: Array,
-        purchases: Array
+        redeemed: Array
     }
 }
 </script>
@@ -73,20 +73,20 @@ export default {
           </tbody>
         </table>
 
-        <!-- Purchases table -->
-        <table v-if="purchases" class="min-w-full text-left table-auto">
+        <!-- Redeemed table -->
+        <table v-if="redeemed" class="min-w-full text-left table-auto">
           <thead class="border-b">
             <tr>
               <th scope="col" class="px-6 py-4">Reward</th>
-              <th scope="col" class="px-6 py-4">Indløst af</th>
+              <!-- <th scope="col" class="px-6 py-4">Indløst af</th> -->
               <th scope="col" class="px-6 py-4">Dato for indløsning</th>
             </tr>
           </thead>
           <tbody>
-            <tr  v-for="purchase in purchases" :key="purchase.id" class="border-b dark:border-neutral-500">
-              <td class="px-6 py-4">{{ purchase.reward.name }}</td>
-              <td class="px-6 py-4">{{ purchase.user.name }}</td>
-              <td class="px-6 py-4">{{ purchase.created_at }}</td>
+            <tr  v-for="redeemedReward in redeemed" :key="redeemedReward.id" class="border-b dark:border-neutral-500">
+              <td class="px-6 py-4">{{ redeemedReward.reward.name }}</td>
+              <!-- <td class="px-6 py-4">{{ redeemedReward.user.name }}</td> -->
+              <td class="px-6 py-4">{{ redeemedReward.created_at }}</td>
             </tr>
           </tbody>
         </table>

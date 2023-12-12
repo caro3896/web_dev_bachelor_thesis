@@ -19,8 +19,9 @@ class MainController extends Controller
         // Retrieve the credits
         $credits = Credits::first();
 
-        // Retrieve rewards in ascending order by price
-        $rewards = Reward::orderBy('price')->get();
+        // Retrieve unredeemed rewards in ascending order by price
+        $rewards = Reward::where('redeemed', false)->orderBy('price')->get();
+
 
         // Fetch voting status for each reward
         foreach ($rewards as $reward) {
