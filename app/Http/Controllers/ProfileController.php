@@ -56,7 +56,7 @@ class ProfileController extends Controller
 
             // Save user and return with success message
             if ($user->save()) {
-                return back()->with('success', "Info blev opdateret");
+                return back()->with('success', "Din bruger blev opdateret");
             }
             return back()->withErrors(['error' => "Opdatering af bruger mislykkedes"]);
         }

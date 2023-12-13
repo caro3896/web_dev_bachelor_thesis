@@ -55,19 +55,22 @@ export default {
                 <InputError :error="form.errors.email"></InputError>
             </div>
             <div class="mb-6">
-                <label for="password" class="block mb-2 uppercase">Password</label>
+                <label for="password" class="block uppercase">Password</label>
+                <p class="italic text-yellow mb-2 text-sm">Obs! Indtast kun noget i dette felt hvis du ønsker at opdatere dit password</p>
                 <input class="border p-2 rounded-xl placeholder:text-light-gray text-gray bg-white-gray w-full md:w-80"
                 type="password"
                 name="password"
                 placeholder="Indtast nyt password"
                 v-model="form.password">
             </div>
-            <div class="flex items-center">
+    
                 <Button type="submit">
                     <img src="/icons/save.svg" alt="" class="pr-2">
                     <p>Opdater information</p>
                 </Button>
-            </div>
         </form>
+        <div v-if="$page.props.success" class="text-yellow mb-2 mt-4 italic">
+        {{ $page.props.success }}
+        </div>
     </div>
 </template>
