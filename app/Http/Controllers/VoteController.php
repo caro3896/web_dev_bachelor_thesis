@@ -7,6 +7,9 @@ use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Event;
+
+use function Psy\debug;
 
 class VoteController extends Controller
 {
@@ -15,45 +18,31 @@ class VoteController extends Controller
      */
     public function vote(string $rewardId)
     {
-        try {
+        // Get the logged in user
+        $user = Auth::user();
 
-            DB::beginTransaction();
-            // Get the logged in user
-            $user = Auth::user();
+        // Find reward
+        $reward = Reward::findOrFail($rewardId);
 
-            // Find reward
-            $reward = Reward::findOrFail($rewardId);
+        // Check if the user has already voted for the reward
+        $existingVote = Vote::where('user_id', $user->id)->where('reward_id', $rewardId)->first();
 
-            // Check if the user has already voted for the reward
-            $existingVote = Vote::where('user_id', $user->id)->where('reward_id', $rewardId)->first();
+        if ($existingVote) {
+            // If the user has already voted, remove the vote
+            $existingVote->delete();
 
-            if ($existingVote) {
-                try {
-                    // If the user has already voted, remove the vote
-                    Vote::where('user_id', $user->id)->where('reward_id', $rewardId)->delete();
-
-                    DB::commit();
-
-                    return back()->with('success', "Stemme på '$reward->name' fjernet");
-                } catch (\Exception $e) {
-                    DB::rollBack();
-                    return back()->withErrors(['error' => 'Noget gik galt, prøv igen senere']);
-                }
-            }
-
-            // If the user has not voted, record the vote
-            Vote::create([
-                'user_id' => $user->id,
-                'reward_id' => $rewardId,
-            ]);
-
-            DB::commit();
-
-            return back()->with('success', "Du har stemt på '$reward->name'");
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return back()->withErrors(['error' => 'Noget gik galt, prøv igen senere']);
+            return back()->with('success', "Stemme på '$reward->name' fjernet");
         }
+
+        // If the user has not voted, record the vote
+        Vote::create([
+            'user_id' => $user->id,
+            'reward_id' => $rewardId,
+        ]);
+
+        DB::commit();
+
+        return back()->with('success', "Du har stemt på '$reward->name'");
     }
 
     /**

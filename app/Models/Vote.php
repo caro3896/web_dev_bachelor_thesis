@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Log;
 
 class Vote extends Model
 {
@@ -34,12 +35,6 @@ class Vote extends Model
 
         // Event triggered when a vote is deleted
         static::deleted(function ($vote) {
-            Log::info('Vote deleted event triggered');
-
-            // Log information about the vote and its associated reward
-            Log::info($vote->toArray());
-            Log::info($vote->reward->toArray());
-
             // Update the votes column in the associated Reward model (decrement)
             $vote->reward->decrement('votes');
         });
