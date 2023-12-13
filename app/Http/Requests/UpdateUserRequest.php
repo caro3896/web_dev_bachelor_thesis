@@ -28,7 +28,7 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|string',
             'email' => 'unique:users,email,' . $this->get('id'),
             'password' => 'sometimes',
-            'admin' => 'required',
+            'admin' => 'sometimes',
         ];
     }
 
@@ -42,8 +42,8 @@ class UpdateUserRequest extends FormRequest
             'email.required' => 'Indtast venligst en email',
             'email.email' => 'Indtast venligst en gyldig email',
             'email.unique' => 'Bruger med denne email findes allerede',
-            'password.required' => 'Indtast venligst et password',
-            'admin.required' => 'Angiv om bruger er admin eller ej',
+            'password.sometimes' => 'Indtast venligst et password',
+            'admin.sometimes' => 'Angiv om bruger er admin eller ej',
         ];
     }
 }

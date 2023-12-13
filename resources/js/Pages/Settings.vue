@@ -35,7 +35,7 @@ export default {
                 }
             return data;
             })
-            .put(route('admin.users.user.update', {id: this.form.id})); // Send form with put method to update user
+            .put(route('user.update')); // Send form with put method to update user
         }
     }
 }

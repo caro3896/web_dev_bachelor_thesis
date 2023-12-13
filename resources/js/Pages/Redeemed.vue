@@ -1,6 +1,5 @@
 <template>
     <h2 class="text-3xl pb-6">Indløste rewards</h2>
-    <!-- <Table :purchases="purchases"></Table> -->
     <Table :redeemed="redeemed"></Table>
    
 </template>

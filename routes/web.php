@@ -42,20 +42,25 @@ Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth')->
 // Routes to site - only accessible if logged in -> using middleware 'Authenticate' (sends the user to login if not authenticated)
 Route::middleware('auth')->group(function () {
 
-    // Routes for regular user
+    // REGULAR USER
 
     // Route to main page/index
     Route::get('/', [MainController::class, 'index'])->name('index');
 
     // Route to profile page
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::get('/redeemed', [RedeemController::class, 'index'])->name('index');
-    Route::get('/settings', [ProfileController::class, 'edit'])->name('edit');
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::get('profile', [ProfileController::class, 'index'])->name('index');
+        Route::get('redeemed', [RedeemController::class, 'index'])->name('index');
+        Route::get('settings', [ProfileController::class, 'edit'])->name('edit');
+        Route::put('update', [ProfileController::class, 'update'])->name('update');
+    });
 
     // Route to handle vote
     Route::put('{rewardId:id}/vote', [VoteController::class, 'vote'])->name('vote');
     Route::put('{rewardId:id}/redeem', [RedeemController::class, 'redeem'])->name('redeem');
 
+
+    //  ADMIN
     // Routes to admin pages - only accessible if admin -> using middleware 'Admin'
     Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [MainController::class, 'admin'])->name('admin');

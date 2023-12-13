@@ -11,7 +11,7 @@
                     <img src="/icons/profile.svg" alt="Silhouette of person"> 
             </Link>
             <!-- Else: show user dashboard -->
-            <Link v-else href="/profile" class="text-gray inline-flex bg-white rounded-full py-3 px-5 " :class="{'bg-yellow': $page.component.startsWith('Admin/') }">
+            <Link v-else href="/user/profile" class="text-gray inline-flex bg-white rounded-full py-3 px-5 " :class="{'bg-yellow': $page.url.startsWith('/user/') }">
                     <img src="/icons/profile.svg" alt="Silhouette of person"> 
             </Link>
             <!-- Only show logout if user is logged in -->
@@ -32,7 +32,7 @@
                     <p class="hidden md:block">Admin</p>
                 </Link>
                  <!-- Else: show user dashboard -->
-                <Link v-else href="/profile" class="text-gray inline-flex bg-white rounded-full py-3 px-5 md:mr-6" :class="{'bg-yellow': $page.component.startsWith('Admin/') }">
+                <Link v-else href="/user/profile" class="text-gray inline-flex bg-white rounded-full py-3 px-5 md:mr-6" :class="{'bg-yellow': $page.url.startsWith('/user/') }">
                     <img src="/icons/profile.svg" alt="Silhouette of person"> 
                 </Link>
                 <!-- Only show logout if user is logged in -->
@@ -43,7 +43,7 @@
                     <p class="group-hover:text-yellow">Log af</p>
                 </Link>
             </div>
-            <div>
+            <div >
                 <p class="text-yellow text-3xl">Til rådighed: {{credits}} x coins</p>
             </div>
         </div>
@@ -52,12 +52,18 @@
 <script>
 import { Link } from '@inertiajs/vue3'
 
+
 export default {
     components: {
         Link,
     },
     props: {
         credits: Number
+    },
+    methods: {
+        logPageInfo() {
+            console.log(this.$page);
+        }
     }
 }
 </script>

@@ -1,17 +1,36 @@
 <script>
 import Edit from './Edit.vue';
 import Delete from './Delete.vue';
+import Button from '../Buttons/Button.vue';
+import { router } from '@inertiajs/vue3';
 
 export default {
     components: {
       Delete,
-      Edit
+      Edit,
+      Button
     },
     props: {
         rewards: Array,
         users: Array,
-        redeemed: Array
-    }
+        redeemed: Array,
+        votes: Array
+    },
+    methods: {
+        removeVote(reward) {
+            router.put(
+                route('vote', { rewardId: reward.id }),
+                {
+                    onSuccess: (response) => {
+                        this.message = "Stemme fjernet";
+                    },
+                    onError: (error) => {
+                        alert(error.error);
+                    }
+                }
+            );
+        }
+      }
 }
 </script>
 
@@ -87,6 +106,26 @@ export default {
               <td class="px-6 py-4">{{ redeemedReward.reward.name }}</td>
               <!-- <td class="px-6 py-4">{{ redeemedReward.user.name }}</td> -->
               <td class="px-6 py-4">{{ redeemedReward.created_at }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Votes table -->
+        <table v-if="votes" class="min-w-full text-left table-auto">
+          <thead class="border-b">
+            <tr>
+              <th scope="col" class="px-6 py-4">Reward</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  v-for="vote in votes" :key="vote.id" class="border-b dark:border-neutral-500">
+              <td class="px-6 py-4">{{ vote.reward.name }}</td>
+              <td>
+                <Button buttonStyle="bg-light-gray text-white" @click="removeVote(vote.reward)">
+                  <img src="/icons/delete.svg" alt="Trashcan icon">
+                  <p class="hidden md:block pl-2">Fjern stemme</p>
+                </Button>
+              </td>
             </tr>
           </tbody>
         </table>

@@ -28,12 +28,17 @@ class VoteController extends Controller
             $existingVote = Vote::where('user_id', $user->id)->where('reward_id', $rewardId)->first();
 
             if ($existingVote) {
-                // If the user has already voted, remove the vote
-                $existingVote->delete();
+                try {
+                    // If the user has already voted, remove the vote
+                    Vote::where('user_id', $user->id)->where('reward_id', $rewardId)->delete();
 
-                DB::commit();
+                    DB::commit();
 
-                return back()->with('success', "Stemme på '$reward->name' fjernet");
+                    return back()->with('success', "Stemme på '$reward->name' fjernet");
+                } catch (\Exception $e) {
+                    DB::rollBack();
+                    return back()->withErrors(['error' => 'Noget gik galt, prøv igen senere']);
+                }
             }
 
             // If the user has not voted, record the vote
