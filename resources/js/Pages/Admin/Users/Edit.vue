@@ -66,7 +66,7 @@ export default {
             <div class="mb-6 w-56">
                 <label class="block mb-2 uppercase">Bruger type</label>
                 <label class="flex items-center">
-                    <input class="w-5 h-5 rounded-xl mr-2" type="checkbox" v-model="form.admin" :false-value="0" :true-value="1">
+                    <input class="w-5 h-5 rounded-xl mr-2" type="checkbox" v-model="form.admin">
                     Admin
                 </label>
                 <InputError :error="form.errors.admin"></InputError>

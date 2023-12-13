@@ -8,9 +8,14 @@
         </LinkButton>
     </div>
     <Table :rewards="rewards"></Table>
+    <div v-if="$page.props.success" class="text-yellow mb-2 mt-4 italic">
+        {{ $page.props.success }}
+    </div>
     <div class="mt-8">
         <Button @click="resetVotes()">Nulstil alle stemmer</Button>
     </div>
+
+    
    
 </template>
 

@@ -8,6 +8,9 @@
         </LinkButton>
     </div>
     <Table :users="users"></Table>
+    <div v-if="$page.props.success" class="text-yellow mb-2 mt-4 italic">
+        {{ $page.props.success }}
+    </div>
    
 </template>
 
