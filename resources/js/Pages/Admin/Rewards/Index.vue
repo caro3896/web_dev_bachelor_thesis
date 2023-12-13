@@ -2,7 +2,10 @@
     <div class="flex justify-between items-center pb-6">
         <h2 class="text-3xl">Rewards</h2>
         <!-- Create new reward -->
-        <LinkButton :href="route('admin.rewards.create')">+ Opret ny</LinkButton>
+        <LinkButton :href="route('admin.rewards.create')">
+            <img class="mr-2" src="/icons/add_reward.svg" alt="">
+            Opret ny
+        </LinkButton>
     </div>
     <Table :rewards="rewards"></Table>
     <div class="mt-8">

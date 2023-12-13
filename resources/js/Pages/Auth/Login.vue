@@ -28,7 +28,7 @@ export default {
 
 <template>
     <main class="grid place-items-center min-h-screen">
-        <section class="border border-light-gray p-8 rounded-xl max-w-md mx-auto">
+        <section class="border border-light-gray p-8 rounded-xl mx-auto w-10/12">
             <h1 class="text-2xl mb-4">Login</h1>
             <form @submit.prevent="login()">
                 <div class="mb-6">

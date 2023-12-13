@@ -2,7 +2,7 @@
 
     <Navbar :credits="credits"/>
 
-    <main class="p-4 mx-auto">
+    <main class="p-3 md:p-4 mx-auto">
         <slot/>
     </main>
 

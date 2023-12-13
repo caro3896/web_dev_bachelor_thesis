@@ -25,7 +25,7 @@ export default {
 </script>
 
 <template>
-    <Button buttonStyle="bg-light-gray text-white" @click="deleteReward()">
+    <Button buttonStyle="bg-light-gray text-white hover:bg-yellow" @click="deleteReward()">
         <img src="/icons/delete.svg" alt="Trashcan icon">
         <p class="hidden md:block pl-2">Slet</p>
     </Button>

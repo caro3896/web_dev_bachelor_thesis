@@ -21,6 +21,7 @@ export default {
     <h2 class="text-3xl">Hej, {{ user.name }}</h2>
     <div class="mt-8">
         <h3 class="text-xl">Dine stemmer:</h3>
-        <Table :votes="votes"></Table>
+        <Table v-if="votes && votes.length > 0" :votes="votes"></Table>
+        <p v-else class="mt-3">Du har ikke stemt på nogle rewards</p>
     </div>
 </template>

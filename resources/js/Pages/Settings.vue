@@ -56,7 +56,7 @@ export default {
             </div>
             <div class="mb-6">
                 <label for="password" class="block mb-2 uppercase">Password</label>
-                <input class="border p-2 rounded-xl placeholder:text-light-gray text-gray bg-white-gray w-80"
+                <input class="border p-2 rounded-xl placeholder:text-light-gray text-gray bg-white-gray w-full md:w-80"
                 type="password"
                 name="password"
                 placeholder="Indtast nyt password"

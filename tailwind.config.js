@@ -20,7 +20,7 @@ export default {
     colors: {
       'gray' : '#30302E',
       'yellow' : '#F9BE38',
-      'white' : '#FFFFFF',
+      'white' : '#FCFAF1',
       'off-white' : '#FCFAF1',
       'light-gray' : '#6A6A6A', 
       'white-gray' : '#EDEDED'

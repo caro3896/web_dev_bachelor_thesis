@@ -8,7 +8,10 @@
             <form @submit.prevent="addCredit()">
                 <FormField v-model="form.credits" type="number" label="Tilføj credits" name="credits" step="50"></FormField>
                 <div class="flex items-center">
-                    <Button class="mt-4">Tilføj</Button>
+                    <Button class="mt-4">
+                        <img class="mr-2" src="/icons/add_credits.svg" alt="">
+                        Tilføj
+                    </Button>
                 </div>
             </form>
         </div>
