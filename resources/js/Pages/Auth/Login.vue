@@ -2,12 +2,14 @@
 import FormField from '../../Components/Form/FormField.vue';
 import InputError from '../../Components/Form/InputError.vue';
 import Button from '../../Components/Buttons/Button.vue';
+import { Head } from '@inertiajs/vue3';
 
 export default {
     components: {
         FormField,
         InputError,
         Button
+        Head
     },
     data() {
         // Form outline for login credentials
@@ -27,8 +29,9 @@ export default {
 </script>
 
 <template>
+    <Head title="Login" />
     <main class="grid place-items-center min-h-screen">
-        <section class="border border-light-gray p-8 rounded-xl mx-auto w-10/12">
+        <section class="border border-light-gray p-8 rounded-xl mx-auto w-10/12 max-w-md">
             <h1 class="text-2xl mb-4">Login</h1>
             <form @submit.prevent="login()">
                 <div class="mb-6">

@@ -1,11 +1,13 @@
 <script>
 import MainLayout from '../Layouts/MainLayout.vue';
 import Reward from '../Components/Rewards/Reward.vue';
+import { Head } from '@inertiajs/vue3';
 
 export default {
     layout: MainLayout,
     components: {
         Reward,
+        Head
     },
     props: {
         rewards: Object,
@@ -31,6 +33,7 @@ export default {
 </script>
 
 <template>
+    <Head title="Pandi Web - Rewards 23" />
     <section>
         <div class="flex justify-between items-center w-52 pb-6">
             <div class="w-16 h-8 border rounded-full flex items-center p-1 cursor-pointer duration-300 ease-in-out" :class="{ 'bg-yellow': toggleActive}" @click="toggleActive = !toggleActive">

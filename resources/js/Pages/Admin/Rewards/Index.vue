@@ -1,4 +1,43 @@
+<script>
+
+import AdminLayout from '../../../Layouts/AdminLayout.vue';
+import Table from '../../../Components/Table/Table.vue';
+import LinkButton from '../../../Components/Buttons/LinkButton.vue';
+import Button from '../../../Components/Buttons/Button.vue';
+import { router } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
+
+export default {
+    layout: AdminLayout,
+    props: {
+        rewards: Array,
+    },
+    components: {
+        Table,
+        LinkButton,
+        Button
+        Head
+    },
+    methods: {
+        resetVotes(){
+            if (confirm("Er du sikker på du vil nulstille alle stemmer?")){
+                router.put(route('admin.reset', {}), {
+                onSuccess: (response) => {
+                    this.message = "Stemmer nulstillet";
+                },
+                onError: (error) => {
+                    alert(error.error);
+                }
+            });
+            }
+        }
+    }
+    
+}
+</script>
+
 <template>
+    <Head title="Rewards" />
     <div class="flex justify-between items-center pb-6">
         <h2 class="text-3xl">Rewards</h2>
         <!-- Create new reward -->
@@ -18,39 +57,3 @@
     
    
 </template>
-
-<script>
-
-import AdminLayout from '../../../Layouts/AdminLayout.vue';
-import Table from '../../../Components/Table/Table.vue';
-import LinkButton from '../../../Components/Buttons/LinkButton.vue';
-import Button from '../../../Components/Buttons/Button.vue';
-import { router } from '@inertiajs/vue3';
-
-export default {
-    layout: AdminLayout,
-    props: {
-        rewards: Array,
-    },
-    components: {
-        Table,
-        LinkButton,
-        Button
-    },
-    methods: {
-        resetVotes(){
-            if (confirm("Er du sikker på du vil nulstille alle stemmer?")){
-                router.put(route('admin.reset', {}), {
-                onSuccess: (response) => {
-                    this.message = "Stemmer nulstillet";
-                },
-                onError: (error) => {
-                    alert(error.error);
-                }
-            });
-            }
-        }
-    }
-    
-}
-</script>

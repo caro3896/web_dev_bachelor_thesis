@@ -3,6 +3,8 @@ import AdminLayout from '../../../Layouts/AdminLayout.vue';
 import FormField from '../../../Components/Form/FormField.vue';
 import Button from '../../../Components/Buttons/Button.vue';
 import InputError from '../../../Components/Form/InputError.vue';
+import { Head } from '@inertiajs/vue3';
+
 
 
 export default {
@@ -10,7 +12,8 @@ export default {
     components: {
     FormField,
     Button,
-    InputError
+    InputError,
+    Head
 },
     props: {
         reward: Object
@@ -66,6 +69,7 @@ export default {
 </script>
 
 <template>
+    <Head title="Rediger reward" />
     <h2 class="text-3xl">Rediger reward</h2>
     <div class="mt-8">
         <form @submit.prevent="updateReward()" enctype="multipart/form-data">

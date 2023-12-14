@@ -4,6 +4,7 @@ import FormField from '../Components/Form/FormField.vue';
 import Button from '../Components/Buttons/Button.vue';
 import InputError from '../Components/Form/InputError.vue';
 import Table from '../Components/Table/Table.vue';
+import { Head } from '@inertiajs/vue3';
 
 export default {
     layout: AdminLayout,
@@ -12,12 +13,14 @@ export default {
         votes: Array
     },
     components: {
-        Table
+        Table,
+        Head
     }
 }
 </script>
 
 <template>
+    <Head title="Profil" />
     <h2 class="text-3xl">Hej, {{ user.name }}</h2>
     <div class="mt-8">
         <h3 class="text-xl">Dine stemmer:</h3>

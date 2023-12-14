@@ -3,13 +3,15 @@ import AdminLayout from '../../../Layouts/AdminLayout.vue';
 import Button from '../../../Components/Buttons/Button.vue';
 import FormField from '../../../Components/Form/FormField.vue';
 import InputError from '../../../Components/Form/InputError.vue';
+import { Head } from '@inertiajs/vue3';
 
 export default {
     layout: AdminLayout,
     components: {
-    Button,
-    FormField,
-    InputError
+        Button,
+        FormField,
+        InputError,
+        Head
     },
     data() {
         // Form outline for create reward, empty by default
@@ -31,6 +33,7 @@ export default {
 </script>
 
 <template>
+    <Head title="Opret reward" />
     <h2 class="text-3xl">Opret ny reward</h2>
     <div class="mt-8">
         <form @submit.prevent="createReward()" enctype="multipart/form-data">

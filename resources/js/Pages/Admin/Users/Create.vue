@@ -3,13 +3,15 @@ import AdminLayout from '../../../Layouts/AdminLayout.vue';
 import FormField from '../../../Components/Form/FormField.vue';
 import InputError from '../../../Components/Form/InputError.vue';
 import Button from '../../../Components/Buttons/Button.vue';
+import { Head } from '@inertiajs/vue3';
 
 export default {
     layout: AdminLayout,
     components: {
         FormField,
         InputError,
-        Button
+        Button,
+        Head
     },
     data() {
         // Form outline for creating a user, empty by default
@@ -32,6 +34,7 @@ export default {
 </script>
 
 <template>
+    <Head title="Opret bruger" />
     <h2 class="text-3xl">Opret ny bruger</h2>
     <div class="mt-8">
         <!-- Form to create user -->

@@ -1,7 +1,6 @@
 <script>
 import Button from '../Buttons/Button.vue';
 import { router } from '@inertiajs/vue3';
-// import SuccessMessage from '../SuccessMessage.vue';
 
 export default {
     components: {
@@ -39,7 +38,7 @@ export default {
         redeem(reward) {
             console.log('test');
 
-            if (confirm("Har du aftalt med dine kolleager at denne reward skal indløses?")){
+            if (confirm("Er du sikker på du vil indløse rewarden: " + reward.name + "? Husk at inddrage dine kollegaer i beslutningen.")){
                 router.put(route('redeem', {id: reward.id}), {}, {
                 onSuccess: (response) => {
                     this.message = "Du har indløst rewarden: " + reward.name;
@@ -95,7 +94,5 @@ export default {
             </div>
         </div>
     </div>
-
-    <!-- <SuccessMessage v-if="message" :message="message" @close="message = null"></SuccessMessage> -->
 
 </template>

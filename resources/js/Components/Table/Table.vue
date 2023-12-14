@@ -45,7 +45,7 @@ export default {
               <th scope="col" class="px-6 py-4 hidden md:table-cell">Billede</th>
               <th scope="col" class="px-6 py-4 hidden md:table-cell">Pris</th>
               <th scope="col" class="px-6 py-4 hidden md:table-cell">Stemmer</th>
-              <th scope="col" class="px-4 py-4 md:px-6">
+              <th scope="col" class="px-4 py-4 md:hidden">
                 <img class="h-full max-w-none" src="/icons/like.svg" alt="">
               </th>
             </tr>
