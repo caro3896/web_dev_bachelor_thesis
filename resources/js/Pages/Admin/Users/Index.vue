@@ -24,7 +24,7 @@ export default {
         <h2 class="text-3xl">Users</h2>
         <!-- Create new reward -->
         <LinkButton :href="route('admin.users.create')">
-            <img class="mr-2" src="/icons/add_user.svg" alt="">
+            <img class="mr-2" src="/icons/add_user.svg" alt="User icon with a plus">
             Opret ny
         </LinkButton>
     </div>

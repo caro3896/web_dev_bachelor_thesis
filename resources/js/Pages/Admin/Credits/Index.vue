@@ -12,7 +12,7 @@ export default {
     },
     components: {
         FormField,
-        Button
+        Button,
         Head
     },
     data() {
@@ -46,7 +46,7 @@ export default {
                 <FormField v-model="form.credits" type="number" label="Tilføj credits" name="credits" step="50"></FormField>
                 <div class="flex items-center">
                     <Button class="mt-4">
-                        <img class="mr-2" src="/icons/add_credits.svg" alt="">
+                        <img class="mr-2" src="/icons/add_credits.svg" alt="Dollar sign with a plus">
                         Tilføj
                     </Button>
                 </div>

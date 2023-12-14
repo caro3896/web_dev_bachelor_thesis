@@ -8,15 +8,15 @@
         <div class="flex flex-col items-end justify-around">
             <!-- Only show admin page if user is admin -->
             <Link v-if="$page.props.auth.user.admin" href="/admin" class="text-gray inline-flex bg-white rounded-full py-3 px-5 " :class="{'bg-yellow': $page.component.startsWith('Admin/') }">
-                    <img src="/icons/profile.svg" alt="Silhouette of person"> 
+                    <img src="/icons/profile.svg" alt="Silhouette of person icon"> 
             </Link>
             <!-- Else: show user dashboard -->
             <Link v-else href="/user/profile" class="text-gray inline-flex bg-white rounded-full py-3 px-5 " :class="{'bg-yellow': $page.url.startsWith('/user/') }">
-                    <img src="/icons/profile.svg" alt="Silhouette of person"> 
+                    <img src="/icons/profile.svg" alt="Silhouette of person icon"> 
             </Link>
             <!-- Only show logout if user is logged in -->
             <Link v-if="$page.props.auth" href="/logout" method="POST" as="button">
-                <img src="/icons/logout.svg" alt="" class="mr-2">
+                <img src="/icons/logout.svg" alt="Lock icon" class="mr-2">
             </Link>
         </div>
     </nav>
@@ -28,12 +28,12 @@
             <div class="">
                 <!-- Only show admin page if user is admin -->
                 <Link v-if="$page.props.auth.user.admin" href="/admin/rewards" class="hover:bg-yellow text-gray inline-flex bg-white rounded-full py-3 px-5 md:mr-6" :class="{'bg-yellow': $page.component.startsWith('Admin/') }">
-                    <img src="/icons/profile.svg" alt="Silhouette of person" class="mr-2"> 
+                    <img src="/icons/profile.svg" alt="Silhouette of person icon" class="mr-2"> 
                     <p class="hidden md:block">Admin</p>
                 </Link>
                  <!-- Else: show user dashboard -->
                 <Link v-else href="/user/profile" class="text-gray inline-flex bg-white rounded-full py-3 px-5 md:mr-6" :class="{'bg-yellow': $page.url.startsWith('/user/') }">
-                    <img src="/icons/profile.svg" alt="Silhouette of person"> 
+                    <img src="/icons/profile.svg" alt="Silhouette of person icon"> 
                 </Link>
                 <!-- Only show logout if user is logged in -->
                 <Link v-if="$page.props.auth" href="/logout" method="POST" as="button" class="inline-flex items-center group">

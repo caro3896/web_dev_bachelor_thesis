@@ -68,7 +68,7 @@ export default {
             </div>
     
                 <Button type="submit">
-                    <img src="/icons/save.svg" alt="" class="pr-2">
+                    <img src="/icons/save.svg" alt="Floppy disc icon" class="pr-2">
                     <p>Opdater information</p>
                 </Button>
         </form>

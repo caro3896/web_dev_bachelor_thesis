@@ -76,7 +76,7 @@ export default {
             </div>
             <div class="flex items-center">
                 <Button type="submit">
-                    <img src="/icons/save.svg" alt="" class="pr-2">
+                    <img src="/icons/save.svg" alt="Floppy disc icon" class="pr-2">
                     <p>Opdater bruger</p>
                 </Button>
             </div>

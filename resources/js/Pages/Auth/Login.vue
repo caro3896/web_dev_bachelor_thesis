@@ -8,7 +8,7 @@ export default {
     components: {
         FormField,
         InputError,
-        Button
+        Button,
         Head
     },
     data() {
@@ -31,7 +31,7 @@ export default {
 <template>
     <Head title="Login" />
     <main class="grid place-items-center min-h-screen">
-        <section class="border border-light-gray p-8 rounded-xl mx-auto w-10/12 max-w-md">
+        <section class="border border-light-gray p-8 rounded-xl mx-auto">
             <h1 class="text-2xl mb-4">Login</h1>
             <form @submit.prevent="login()">
                 <div class="mb-6">

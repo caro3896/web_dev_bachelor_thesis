@@ -13,7 +13,7 @@ export default {
 
 <template>
     <LinkButton :href="editRoute">
-        <img src="/icons/edit.svg" alt="">
+        <img src="/icons/edit.svg" alt="Pencil icon">
         <p class="hidden md:block pl-2">Rediger</p>
     </LinkButton>
 </template>

@@ -15,7 +15,7 @@ export default {
     components: {
         Table,
         LinkButton,
-        Button
+        Button,
         Head
     },
     methods: {
@@ -42,7 +42,7 @@ export default {
         <h2 class="text-3xl">Rewards</h2>
         <!-- Create new reward -->
         <LinkButton :href="route('admin.rewards.create')">
-            <img class="mr-2" src="/icons/add_reward.svg" alt="">
+            <img class="mr-2" src="/icons/add_reward.svg" alt="Gift icon with a plus">
             Opret ny
         </LinkButton>
     </div>

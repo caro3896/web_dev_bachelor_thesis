@@ -19,7 +19,7 @@ export default {
 <template>
     <div>
         <label :for="label" class="block mb-2 uppercase">{{ label }}</label>
-        <input class="border p-2 rounded-xl placeholder:text-light-gray text-gray bg-white-gray w-full md:w-80"
+        <input class="border p-2 rounded-xl placeholder:text-light-gray text-gray bg-white-gray w-80"
             :type="type"
             :name="label"
             :min="min"

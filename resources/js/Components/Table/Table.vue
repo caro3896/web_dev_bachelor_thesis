@@ -37,7 +37,7 @@ export default {
 <template>
 
       <!-- Rewards table -->
-        <table v-if="rewards" class="min-w-full text-left table-auto">
+        <table v-if="rewards" class="text-left table-auto w-full">
           <thead class="border-b">
             <tr class="py-4">
               <th scope="col" class="px-2 py-4 md:px-6">Titel</th>
@@ -46,7 +46,7 @@ export default {
               <th scope="col" class="px-6 py-4 hidden md:table-cell">Pris</th>
               <th scope="col" class="px-6 py-4 hidden md:table-cell">Stemmer</th>
               <th scope="col" class="px-4 py-4 md:hidden">
-                <img class="h-full max-w-none" src="/icons/like.svg" alt="">
+                <img class="h-full max-w-none" src="/icons/like.svg" alt="Thumbs up icon">
               </th>
             </tr>
           </thead>
@@ -54,7 +54,7 @@ export default {
             <tr  v-for="reward in rewards" :key="reward.id" class="border-b dark:border-neutral-500 py-4">
               <td class="px-2 py-2 px-2 py-4 md:px-6">{{ reward.name }}</td>
               <td class="px-6 py-4 hidden md:table-cell">{{ reward.description }}</td>
-              <td class="px-6 py-4 hidden md:table-cell"><img class="w-20 rounded" :src="'/storage/' + reward.image " alt=""></td>
+              <td class="px-6 py-4 hidden md:table-cell"><img class="w-20 rounded" :src="'/storage/' + reward.image " alt="Image of the reward"></td>
               <td class="px-6 py-4 hidden md:table-cell">{{ reward.price }}</td>
               <td class="px-4 py-4 md:px-6">{{ reward.votes }}</td>
               <td class="px-4">
@@ -70,7 +70,7 @@ export default {
         </table>
 
         <!-- Users table -->
-        <table v-if="users" class="min-w-full text-left table-auto">
+        <table v-if="users" class="w-full text-left table-auto">
           <thead class="border-b">
             <tr>
               <th scope="col" class="px-2 py-4 md:px-6">Navn</th>
@@ -96,7 +96,7 @@ export default {
         </table>
 
         <!-- Redeemed table -->
-        <table v-if="redeemed" class="min-w-full text-left table-auto">
+        <table v-if="redeemed" class="w-full text-left table-auto">
           <thead class="border-b">
             <tr>
               <th scope="col" class="px-2 py-4 md:px-6">Reward</th>
@@ -114,7 +114,7 @@ export default {
         </table>
 
         <!-- Votes table -->
-        <table v-if="votes" class="min-w-full text-left table-auto">
+        <table v-if="votes" class="w-full text-left table-auto">
           <thead class="border-b">
             <tr>
               <th scope="col" class="px-2 py-4 md:px-6">Reward</th>
