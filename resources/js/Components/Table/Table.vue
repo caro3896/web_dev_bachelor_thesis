@@ -41,8 +41,8 @@ export default {
           <thead class="border-b">
             <tr class="py-4">
               <th scope="col" class="px-2 py-4 md:px-6">Titel</th>
-              <th scope="col" class="px-6 py-4 hidden md:table-cell">Beskrivelse</th>
-              <th scope="col" class="px-6 py-4 hidden md:table-cell">Billede</th>
+              <th scope="col" class="px-6 py-4 hidden lg:table-cell">Beskrivelse</th>
+              <th scope="col" class="px-6 py-4 hidden lg:table-cell">Billede</th>
               <th scope="col" class="px-6 py-4 hidden md:table-cell">Pris</th>
               <th scope="col" class="px-6 py-4 hidden md:table-cell">Stemmer</th>
               <th scope="col" class="px-4 py-4 md:hidden">
@@ -53,8 +53,8 @@ export default {
           <tbody>
             <tr  v-for="reward in rewards" :key="reward.id" class="border-b dark:border-neutral-500 py-4">
               <td class="px-2 py-2 px-2 py-4 md:px-6">{{ reward.name }}</td>
-              <td class="px-6 py-4 hidden md:table-cell">{{ reward.description }}</td>
-              <td class="px-6 py-4 hidden md:table-cell"><img class="w-20 rounded" :src="'/storage/' + reward.image " alt="Image of the reward"></td>
+              <td class="px-6 py-4 hidden lg:table-cell">{{ reward.description }}</td>
+              <td class="px-6 py-4 hidden lg:table-cell"><img class="w-20 rounded" :src="'/storage/' + reward.image " alt="Image of the reward"></td>
               <td class="px-6 py-4 hidden md:table-cell">{{ reward.price }}</td>
               <td class="px-4 py-4 md:px-6">{{ reward.votes }}</td>
               <td class="px-4">
@@ -74,14 +74,14 @@ export default {
           <thead class="border-b">
             <tr>
               <th scope="col" class="px-2 py-4 md:px-6">Navn</th>
-              <th scope="col" class="px-6 py-4 hidden md:table-cell">Email</th>
+              <th scope="col" class="px-6 py-4 hidden lg:table-cell">Email</th>
               <th scope="col" class="px-2 py-4 md:px-6">Bruger type</th>
             </tr>
           </thead>
           <tbody>
             <tr  v-for="user in users" :key="user.id" class="border-b dark:border-neutral-500">
               <td class="px-2 py-4 md:px-6">{{ user.name }}</td>
-              <td class="px-6 py-4 hidden md:table-cell">{{ user.email }}</td>
+              <td class="px-6 py-4 hidden lg:table-cell">{{ user.email }}</td>
               <td class="px-2 py-4 md:px-6">{{ user.is_admin ? 'Admin' : 'Standard' }}</td>
               <td>
                 <!-- Rediger -->
