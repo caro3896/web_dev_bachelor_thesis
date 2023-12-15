@@ -40,8 +40,6 @@ class VoteController extends Controller
             'reward_id' => $rewardId,
         ]);
 
-        DB::commit();
-
         return back()->with('success', "Du har stemt på '$reward->name'");
     }
 

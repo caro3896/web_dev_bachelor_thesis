@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
         Route::put('update', [ProfileController::class, 'update'])->name('update');
     });
 
-    // Route to handle vote
+    // Route to handle vote and redeem
     Route::put('{rewardId:id}/vote', [VoteController::class, 'vote'])->name('vote');
     Route::put('{rewardId:id}/redeem', [RedeemController::class, 'redeem'])->name('redeem');
 
