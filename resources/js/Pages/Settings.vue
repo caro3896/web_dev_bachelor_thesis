@@ -70,9 +70,9 @@ export default {
             
             // Check if there are any errors before submitting
             if (
-                Object.keys(this.errors.name).length === 0 &&
-                Object.keys(this.errors.email).length === 0 &&
-                Object.keys(this.errors.password).length === 0
+                !this.errors.name &&
+                !this.errors.email &&
+                !this.errors.password
             ) {
 
             // Transform form to exclude password if it hasn't been changed

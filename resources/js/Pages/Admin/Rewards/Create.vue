@@ -20,13 +20,77 @@ export default {
                 name: '',
                 description: '',
                 image: '',
-                price:'',
-            })
+                price:0,
+            }),
+            errors: {}
         }
     },
     methods: {
+        validateName(){
+            this.errors.name = '';
+            
+            if (!this.form.name) {
+                this.errors.name = 'Navn må ikke været tomt';
+            }
+
+            if (this.form.name && this.form.name.length > 50) {
+                this.errors.name = 'Navnet må max være 50 karakterer langt';
+            }
+        },
+        validateDescription(){
+            this.errors.description = '';
+            
+            if (!this.form.description) {
+                this.errors.description = 'Beskrivelse må ikke været tomt';
+            }
+
+            if (this.form.description && this.form.description.length > 200) {
+                this.errors.description = 'Beskrivelsen må max være 200 karakterer langt';
+            }
+        },
+        validatePrice(){
+            this.errors.price = '';
+            
+            if (!this.form.price && !/^\d+$/.test(this.form.price))  {
+                this.errors.price = 'Credits skal være et tal';
+            }
+        },
+        validateImage(){
+            this.errors.image = '';
+
+            if (!this.form.image) {
+                this.errors.image = 'Billedet skal vælges';
+                return;
+            }
+
+            const allowedImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            const isImage = allowedImageTypes.includes(this.form.image.type);
+
+            if (!isImage) {
+                this.errors.image = 'Billedet skal være af typen JPEG, PNG, eller GIF';
+            }
+        },
+
+        handleImageUpload(event){
+            this.form.image = event.target.files[0];
+            this.validateImage();
+        },
         createReward() {
-            this.form.post(route('admin.rewards.store'));
+            this.validateName();
+            this.validateDescription();
+            this.validateImage();
+            this.validatePrice();
+
+            // Check if there are any errors before submitting
+            if (
+                !this.errors.name &&
+                !this.errors.description &&
+                !this.errors.image &&
+                !this.errors.price
+            ) {
+                console.log('yes');
+                this.form.post(route('admin.rewards.store'));
+            }
         }
     }
 }
@@ -38,8 +102,8 @@ export default {
     <div class="mt-8">
         <form @submit.prevent="createReward()" enctype="multipart/form-data">
             <div class="mb-6">
-                <FormField type="text" name="navn" label="navn" placeholder="Indtast navn på reward"  v-model="form.name"></FormField>
-                <InputError :error="form.errors.name"></InputError>
+                <FormField type="text" name="navn" label="navn" placeholder="Indtast navn på reward"  v-model="form.name" @input=validateName()></FormField>
+                <InputError :error="form.errors.name || errors.name"></InputError>
             </div>
             <div class="mb-6">
                 <label class="block mb-2 uppercase">Beskrivelse</label>
@@ -51,18 +115,18 @@ export default {
                     rows="10"
                     class="border p-2 rounded-xl placeholder:text-light-gray text-gray bg-white-gray w-80"
                     placeholder="Indtast beskrivelse af reward"
-                    @input=validateDescription
+                    @input=validateDescription()
                     ></textarea>
-                    <InputError :error="form.errors.description"></InputError>
+                    <InputError :error="form.errors.description || errors.description"></InputError>
             </div>
             <div class="mb-6">
                 <label class="block mb-2 uppercase">Billede</label>
                 <input type="file" name="image" @input="handleImageUpload">
-                <InputError :error="form.errors.image"></InputError>
+                <InputError :error="form.errors.image || errors.image"></InputError>
             </div>
             <div class="mb-6">
-                <FormField type="number" name="price" label="pris" placeholder="Indtast pris på reward" v-model="form.price" min="1"></FormField>
-                <InputError :error="form.errors.price"></InputError>
+                <FormField type="number" name="price" label="pris" placeholder="Indtast pris på reward" v-model="form.price" min="1" @input=validatePrice></FormField>
+                <InputError :error="form.errors.price || errors.price"></InputError>
             </div>
             <div class="flex items-center">
                 <Button type="submit" class="flex">

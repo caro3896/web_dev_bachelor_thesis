@@ -31,7 +31,6 @@ export default {
             this.errors.credits = '';
             
             if (!this.form.credits && !/^\d+$/.test(this.form.credits))  {
-                console.log('test');
                 this.errors.credits = 'Credits skal være et tal';
             }
         },
@@ -40,7 +39,7 @@ export default {
 
             // Check if there are any errors before submitting
             if (
-                Object.keys(this.errors.credits).length === 0 
+                !this.errors.credits 
             ) {
 
             this.form.put(route('admin.credits.update'), {
