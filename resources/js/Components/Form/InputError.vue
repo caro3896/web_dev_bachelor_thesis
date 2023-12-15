@@ -7,5 +7,5 @@ export default {
 </script>
 
 <template>
-    <p class="bg-red-400 pt-1 text-yellow italic rounded-b-lg text-sm" v-if="error">{{ error }}</p>
+    <p class="pt-1 text-yellow italic rounded-b-lg text-sm" v-if="error">{{ error }}</p>
 </template>

@@ -25,11 +25,52 @@ export default {
                 email: this.user.email,
                 // Old password not displayed
                 password: null,
-            })
+            }),
+            errors: {}
         }
     },
     methods: {
+        validateName(){
+            this.errors.name = '';
+            
+            if (!this.form.name) {
+                this.errors.name = 'Navn må ikke været tomt';
+            }
+
+            if (this.form.name && !/^[a-zA-Z\s]+$/.test(this.form.name)) {
+            this.errors.name = 'Name must contain only letters and spaces';
+            }
+        },
+        validateEmail(){
+            this.errors.email = '';
+
+            if (!this.form.email) {
+                this.errors.email = 'Email skal udfyldes';
+            }
+
+            if (this.form.email && !/^\S+@\S+\.\S+$/.test(this.form.email)) {
+                this.errors.email = 'Indtast en gyldig email';
+            }
+        },
+        validatePassword(){
+            this.errors.password = '';
+
+            if (this.form.password && this.form.password.length < 6) {
+            this.errors.password = 'Password must be at least 6 characters';
+            }
+        },
         updateUser(){
+            this.validateName();
+            this.validateEmail();
+            this.validatePassword();
+            
+            // Check if there are any errors before submitting
+            if (
+                Object.keys(this.errors.name).length === 0 &&
+                Object.keys(this.errors.email).length === 0 &&
+                Object.keys(this.errors.password).length === 0
+            ) {
+
             // Transform form to exclude password if it hasn't been changed
             this.form.transform(data => { 
                 if (data.password === null) {
@@ -38,6 +79,7 @@ export default {
             return data;
             })
             .put(route('user.update')); // Send form with put method to update user
+            }
         }
     }
 }
@@ -50,16 +92,16 @@ export default {
         <!-- Form for updating user -->
         <form @submit.prevent="updateUser()">
             <div class="mb-6">
-                <FormField type="text" name="navn" label="navn" placeholder="Indtast navn på bruger"  v-model="form.name"></FormField>
-                <InputError :error="form.errors.name"></InputError>
+                <FormField type="text" name="navn" label="navn" placeholder="Indtast navn på bruger"  v-model="form.name" @input=validateName()></FormField>
+                <InputError :error="form.errors.name || errors.name"></InputError>
             </div>
             <div class="mb-6">
-                <FormField type="email" name="email" label="email" placeholder="Indtast email på bruger"  v-model="form.email"></FormField>
-                <InputError :error="form.errors.email"></InputError>
+                <FormField type="email" name="email" label="email" placeholder="Indtast email på bruger"  v-model="form.email" @input=validateEmail()></FormField>
+                <InputError :error="form.errors.email || errors.email"></InputError>
             </div>
             <div class="mb-6">
                 <label for="password" class="block uppercase">Password</label>
-                <p class="italic text-yellow mb-2 text-sm">Obs! Indtast kun noget i dette felt hvis du ønsker at opdatere dit password</p>
+                <p class="italic text-white mb-2 text-sm">Obs! Indtast kun noget i dette felt hvis du ønsker at opdatere dit password</p>
                 <input class="border p-2 rounded-xl placeholder:text-light-gray text-gray bg-white-gray w-full md:w-80"
                 type="password"
                 name="password"
