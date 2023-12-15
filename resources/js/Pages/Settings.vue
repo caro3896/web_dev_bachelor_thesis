@@ -38,7 +38,11 @@ export default {
             }
 
             if (this.form.name && !/^[a-zA-Z\s]+$/.test(this.form.name)) {
-            this.errors.name = 'Name must contain only letters and spaces';
+            this.errors.name = 'Navnet må kun indeholde bogstaver';
+            }
+
+            if (this.form.name && this.form.name.length > 50) {
+                this.errors.name = 'Navnet må max være 50 karakterer langt';
             }
         },
         validateEmail(){
@@ -56,7 +60,7 @@ export default {
             this.errors.password = '';
 
             if (this.form.password && this.form.password.length < 6) {
-            this.errors.password = 'Password must be at least 6 characters';
+                this.errors.password = 'Password skal være mindsst 6 karakterer langt';
             }
         },
         updateUser(){

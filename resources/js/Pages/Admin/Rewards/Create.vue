@@ -27,7 +27,7 @@ export default {
     methods: {
         createReward() {
             this.form.post(route('admin.rewards.store'));
-        },
+        }
     }
 }
 </script>
@@ -51,16 +51,17 @@ export default {
                     rows="10"
                     class="border p-2 rounded-xl placeholder:text-light-gray text-gray bg-white-gray w-80"
                     placeholder="Indtast beskrivelse af reward"
+                    @input=validateDescription
                     ></textarea>
                     <InputError :error="form.errors.description"></InputError>
             </div>
             <div class="mb-6">
                 <label class="block mb-2 uppercase">Billede</label>
-                <input type="file" name="image" @input="form.image = $event.target.files[0]">
+                <input type="file" name="image" @input="handleImageUpload">
                 <InputError :error="form.errors.image"></InputError>
             </div>
             <div class="mb-6">
-                <FormField type="number" name="price" label="pris" placeholder="Indtast pris på reward"  v-model="form.price" min="1"></FormField>
+                <FormField type="number" name="price" label="pris" placeholder="Indtast pris på reward" v-model="form.price" min="1"></FormField>
                 <InputError :error="form.errors.price"></InputError>
             </div>
             <div class="flex items-center">

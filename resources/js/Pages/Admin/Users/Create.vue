@@ -21,13 +21,62 @@ export default {
                 email:'',
                 password: '',
                 admin:0
-            })
+            }),
+            errors: {}
         }
     },
     methods: {
+        validateName(){
+            this.errors.name = '';
+            
+            if (!this.form.name) {
+                this.errors.name = 'Navn må ikke været tomt';
+            }
+
+            if (this.form.name && !/^[a-zA-Z\s]+$/.test(this.form.name)) {
+            this.errors.name = 'Navnet må kun indeholde bogstaver';
+            }
+
+            if (this.form.name && this.form.name.length > 50) {
+                this.errors.name = 'Navnet må max være 50 karakterer langt';
+            }
+        },
+        validateEmail(){
+            this.errors.email = '';
+
+            if (!this.form.email) {
+                this.errors.email = 'Email skal udfyldes';
+            }
+
+            if (this.form.email && !/^\S+@\S+\.\S+$/.test(this.form.email)) {
+                this.errors.email = 'Indtast en gyldig email';
+            }
+        },
+        validatePassword(){
+            this.errors.password = '';
+
+            if (!this.form.password) {
+                this.errors.password = 'Password skal udfyldes';
+            }
+
+            if (this.form.password && this.form.password.length < 6) {
+                this.errors.password = 'Password skal være mindsst 6 karakterer langt';
+            }
+        },
         createUser(){
-            // Post form to store user
-            this.form.post(route('admin.users.store'));
+            this.validateName();
+            this.validateEmail();
+            this.validatePassword();
+            
+            // Check if there are any errors before submitting
+            if (
+                Object.keys(this.errors.name).length === 0 &&
+                Object.keys(this.errors.email).length === 0 &&
+                Object.keys(this.errors.password).length === 0
+            ) {
+                // Post form to store user
+                this.form.post(route('admin.users.store'));
+            }
         }
     }
 }
@@ -40,16 +89,16 @@ export default {
         <!-- Form to create user -->
         <form @submit.prevent="createUser()">
             <div class="mb-6">
-                <FormField type="text" name="navn" label="navn" placeholder="Indtast navn"  v-model="form.name"></FormField>
-                <InputError :error="form.errors.name"></InputError>
+                <FormField type="text" name="navn" label="navn" placeholder="Indtast navn"  v-model="form.name" @input=validateName()></FormField>
+                <InputError :error="form.errors.name || errors.name"></InputError>
             </div>
             <div class="mb-6">
-                <FormField type="email" name="email" label="email" placeholder="Indtast email"  v-model="form.email"></FormField>
-                <InputError :error="form.errors.email"></InputError>
+                <FormField type="email" name="email" label="email" placeholder="Indtast email"  v-model="form.email" @input=validateEmail()></FormField>
+                <InputError :error="form.errors.email || errors.email"></InputError>
             </div>
             <div class="mb-6">
-                <FormField type="password" name="password" label="password" placeholder="Indtast password"  v-model="form.password"></FormField>
-                <InputError :error="form.errors.password"></InputError>
+                <FormField type="password" name="password" label="password" placeholder="Indtast password"  v-model="form.password" @input=validatePassword()></FormField>
+                <InputError :error="form.errors.password || errors.password"></InputError>
             </div>
             <div class="mb-6 w-56">
                 <label class="block mb-2 uppercase">Bruger type</label>
