@@ -6,31 +6,20 @@ on:
       - completed
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
-      - name: Install Composer dependencies
-        run: composer install --no-dev --prefer-dist --optimize-autoloader
 
-  deploy:
-    needs: build
-      runs-on: ubuntu-latest
-
-      steps:
-        - name: Checkout code
-        uses: actions/checkout@v2
-
-        - name: Deploy to Hetzner Cloud using ssh
+      - name: Deploy to Hetzner Cloud using ssh
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /var/www/youtube.com/
+            cd /Users/caroliner.juhl/Documents/kea/7. semester/Bachelor/Bachelorprojekt/rewards
             git pull origin main
             npm install
