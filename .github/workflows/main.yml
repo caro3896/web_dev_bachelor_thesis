@@ -20,6 +20,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /Users/caroliner.juhl/Documents/kea/7. semester/Bachelor/Bachelorprojekt/rewards
+            cd $GITHUB_WORKSPACE
             git pull origin main
-            npm install
+            npm install --only=prod
