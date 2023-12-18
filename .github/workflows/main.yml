@@ -1,4 +1,4 @@
-name: Deployment
+name: Continuous Delivery
 on:
   workflow_run:
     workflows: ["Continuous Integration"]
@@ -7,7 +7,6 @@ on:
 
 jobs:
   build:
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -16,8 +15,16 @@ jobs:
         
       - name: Install Composer dependencies
         run: composer install --no-dev --prefer-dist --optimize-autoloader
-        
-      - name: Deploy to Hetzner Cloud using ssh
+
+  deploy:
+    needs: build
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout code
+        uses: actions/checkout@v2
+
+        - name: Deploy to Hetzner Cloud using ssh
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
