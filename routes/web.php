@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
     // Route to profile page
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('profile', [ProfileController::class, 'index'])->name('index');
-        Route::get('redeemed', [RedeemController::class, 'index'])->name('index');
+        Route::get('redeemed', [RedeemController::class, 'index'])->name('redeemed');
         Route::get('settings', [ProfileController::class, 'edit'])->name('edit');
         Route::put('update', [ProfileController::class, 'update'])->name('update');
     });

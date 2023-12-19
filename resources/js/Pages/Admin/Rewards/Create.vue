@@ -4,6 +4,7 @@ import Button from '../../../Components/Buttons/Button.vue';
 import FormField from '../../../Components/Form/FormField.vue';
 import InputError from '../../../Components/Form/InputError.vue';
 import { Head } from '@inertiajs/vue3';
+import { validateName, validateDescription, validatePrice, validateImage } from '../../../validator';
 
 export default {
     layout: AdminLayout,
@@ -26,49 +27,17 @@ export default {
         }
     },
     methods: {
-        validateName(){
-            this.errors.name = '';
-            
-            if (!this.form.name) {
-                this.errors.name = 'Navn må ikke været tomt';
-            }
-
-            if (this.form.name && this.form.name.length > 50) {
-                this.errors.name = 'Navnet må max være 50 karakterer langt';
-            }
+        validateName() {
+            this.errors.name = validateName(this.form);
         },
         validateDescription(){
-            this.errors.description = '';
-            
-            if (!this.form.description) {
-                this.errors.description = 'Beskrivelse må ikke været tomt';
-            }
-
-            if (this.form.description && this.form.description.length > 200) {
-                this.errors.description = 'Beskrivelsen må max være 200 karakterer langt';
-            }
+            this.errors.description = validateDescription(this.form);
         },
         validatePrice(){
-            this.errors.price = '';
-            
-            if (!this.form.price && !/^\d+$/.test(this.form.price))  {
-                this.errors.price = 'Credits skal være et tal';
-            }
+            this.errors.price = validatePrice(this.form);
         },
         validateImage(){
-            this.errors.image = '';
-
-            if (!this.form.image) {
-                this.errors.image = 'Billedet skal vælges';
-                return;
-            }
-
-            const allowedImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
-            const isImage = allowedImageTypes.includes(this.form.image.type);
-
-            if (!isImage) {
-                this.errors.image = 'Billedet skal være af typen JPEG, PNG, eller GIF';
-            }
+            this.errors.image = validateImage(this.form)
         },
 
         handleImageUpload(event){
@@ -121,7 +90,7 @@ export default {
             </div>
             <div class="mb-6">
                 <label class="block mb-2 uppercase">Billede</label>
-                <input type="file" name="image" @input="handleImageUpload">
+                <input type="file" accept="image/*" name="image" @input="handleImageUpload">
                 <InputError :error="form.errors.image || errors.image"></InputError>
             </div>
             <div class="mb-6">

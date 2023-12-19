@@ -5,6 +5,7 @@ import Button from '../../../Components/Buttons/Button.vue';
 import FormField from '../../../Components/Form/FormField.vue';
 import InputError from '../../../Components/Form/InputError.vue';
 import { Head } from '@inertiajs/vue3';
+import { validateCredits } from '../../../validator';
 
 export default {
     layout: AdminLayout,
@@ -27,12 +28,8 @@ export default {
         }
     },
     methods: {
-        validateCredits(){
-            this.errors.credits = '';
-            
-            if (!this.form.credits && !/^\d+$/.test(this.form.credits))  {
-                this.errors.credits = 'Credits skal være et tal';
-            }
+        validateCredits() {
+            this.errors.credits = validateCredits(this.form);
         },
         addCredit() {
             this.validateCredits();

@@ -3,6 +3,7 @@ import FormField from '../../Components/Form/FormField.vue';
 import InputError from '../../Components/Form/InputError.vue';
 import Button from '../../Components/Buttons/Button.vue';
 import { Head } from '@inertiajs/vue3';
+import { validateEmail, validatePassword } from '../../validator';
 
 export default {
     components: {
@@ -22,23 +23,11 @@ export default {
         }
     },
     methods: {
-        validateEmail(){
-            this.errors.email = '';
-
-            if (!this.form.email) {
-                this.errors.email = 'Email skal udfyldes';
-            }
-
-            if (this.form.email && !/^\S+@\S+\.\S+$/.test(this.form.email)) {
-                this.errors.email = 'Ugyligt email';
-            }
+        validateEmail() {
+            this.errors.email = validateEmail(this.form);
         },
-        validatePassword(){
-            this.errors.password = '';
-
-            if (!this.form.password) {
-                this.errors.password = 'Password skal udfyldes';
-            }
+        validatePassword() {
+            this.errors.password = validatePassword(this.form, { required: true });
         },
         login(){
             this.validateEmail();
@@ -46,8 +35,8 @@ export default {
 
             // Check if there are any errors before submitting
             if (
-                Object.keys(this.errors.email).length === 0 &&
-                Object.keys(this.errors.password).length === 0
+                !this.errors.email &&
+                !this.errors.password
             ) {
                     this.form.post(route('login.store'));
             }

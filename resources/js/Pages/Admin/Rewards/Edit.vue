@@ -4,6 +4,7 @@ import FormField from '../../../Components/Form/FormField.vue';
 import Button from '../../../Components/Buttons/Button.vue';
 import InputError from '../../../Components/Form/InputError.vue';
 import { Head } from '@inertiajs/vue3';
+import { validateName, validateDescription, validatePrice, validateImage } from '../../../validator';
 
 
 
@@ -54,48 +55,18 @@ export default {
             };
             reader.readAsDataURL(event.target.files[0]);
         },
-        validateName(){
-            this.errors.name = '';
-            
-            if (!this.form.name) {
-                this.errors.name = 'Navn må ikke været tomt';
-            }
-
-            if (this.form.name && this.form.name.length > 50) {
-                this.errors.name = 'Navnet må max være 50 karakterer langt';
-            }
+        validateName() {
+            this.errors.name = validateName(this.form, { letters: true });
         },
         validateDescription(){
-            this.errors.description = '';
-            
-            if (!this.form.description) {
-                this.errors.description = 'Beskrivelse må ikke været tomt';
-            }
-
-            if (this.form.description && this.form.description.length > 200) {
-                this.errors.description = 'Beskrivelsen må max være 200 karakterer langt';
-            }
-        },
-        validatePrice(){
-            this.errors.price = '';
-            
-            if (!this.form.price && !/^\d+$/.test(this.form.price))  {
-                this.errors.price = 'Credits skal være et tal';
-            }
+            this.errors.description = validateDescription(this.form);
         },
         validateImage(){
-            this.errors.image = '';
-
-            if (!this.form.image) {
-                this.errors.image = 'Billede skal vælges';
-            }
-
-            const allowedImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
-            if (!allowedImageTypes.includes(this.form.image.type)) {
-                this.errors.image = 'Billedet skal være af typen JPEG, PNG, eller GIF';
-            }
+            this.errors.image = validateImage(this.form)
         },
-
+        validatePrice(){
+            this.errors.price = validatePrice(this.form);
+        },
         updateReward(){
             this.validateName();
             this.validateDescription();

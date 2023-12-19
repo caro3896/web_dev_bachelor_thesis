@@ -4,6 +4,8 @@ import FormField from '../Components/Form/FormField.vue';
 import Button from '../Components/Buttons/Button.vue';
 import InputError from '../Components/Form/InputError.vue';
 import { Head } from '@inertiajs/vue3';
+import { validateName, validateEmail, validatePassword } from '../validator';
+
 
 export default {
     layout: AdminLayout,
@@ -30,38 +32,14 @@ export default {
         }
     },
     methods: {
-        validateName(){
-            this.errors.name = '';
-            
-            if (!this.form.name) {
-                this.errors.name = 'Navn må ikke været tomt';
-            }
-
-            if (this.form.name && !/^[a-zA-Z\s]+$/.test(this.form.name)) {
-            this.errors.name = 'Navnet må kun indeholde bogstaver';
-            }
-
-            if (this.form.name && this.form.name.length > 50) {
-                this.errors.name = 'Navnet må max være 50 karakterer langt';
-            }
+        validateName() {
+            this.errors.name = validateName(this.form);
         },
-        validateEmail(){
-            this.errors.email = '';
-
-            if (!this.form.email) {
-                this.errors.email = 'Email skal udfyldes';
-            }
-
-            if (this.form.email && !/^\S+@\S+\.\S+$/.test(this.form.email)) {
-                this.errors.email = 'Indtast en gyldig email';
-            }
+        validateEmail() {
+            this.errors.email = validateEmail(this.form);
         },
-        validatePassword(){
-            this.errors.password = '';
-
-            if (this.form.password && this.form.password.length < 6) {
-                this.errors.password = 'Password skal være mindsst 6 karakterer langt';
-            }
+        validatePassword() {
+            this.errors.password = validatePassword(this.form, {minLength: 6 });
         },
         updateUser(){
             this.validateName();
@@ -106,11 +84,13 @@ export default {
             <div class="mb-6">
                 <label for="password" class="block uppercase">Password</label>
                 <p class="italic text-white mb-2 text-sm">Obs! Indtast kun noget i dette felt hvis du ønsker at opdatere dit password</p>
-                <input class="border p-2 rounded-xl placeholder:text-light-gray text-gray bg-white-gray w-full md:w-80"
+                <input class="border p-2 rounded-xl placeholder:text-light-gray text-gray bg-white-gray w-80"
                 type="password"
                 name="password"
                 placeholder="Indtast nyt password"
-                v-model="form.password">
+                v-model="form.password"
+                @input=validatePassword()>
+                <InputError :error="form.errors.password || errors.password"></InputError>
             </div>
     
                 <Button type="submit">
