@@ -1,3 +1,4 @@
+// VALIDATIONS
 export const validateName = (form, options = {}) => {
     let error = '';
 
@@ -35,11 +36,11 @@ export const validatePassword = (form, options = {}) => {
 
     if (options.required && !form.password) {
         error = 'Password skal udfyldes';
-    } else if (options.required && form.password.length< options.minLength) {
-        error = 'Password skal være mindst 6 karakterer langt'
+    } else if (options.required && form.password.length < options.minLength) {
+        error = `Password skal være mindst ${options.minLength} karakterer langt`
     }
     else if (!options.required && form.password.length > 0 && form.password.length< options.minLength){
-        error = 'Password skal være mindst 6 karakterer langt'
+        error = `Password skal være mindst ${options.minLength} karakterer langt`
     }
 
     return error;
@@ -82,8 +83,6 @@ export const validatePrice = (form = {}) => {
 export const validateImage = (form = {}) => {
     let error = '';
 
-    console.log('validere image)');
-
     if (!form.image) {
         error = 'Billede skal vælges';
         return error;
@@ -96,7 +95,6 @@ export const validateImage = (form = {}) => {
         error = 'Billedet skal være af typen JPEG, PNG, eller GIF';
     }
 
-    console.log(form.image.size);
     const maxSizeInBytes = 2 * 1024 * 1024;
     if (form.image.size > maxSizeInBytes) {
         error = `Billedet skal være mindre end 2MB`;
