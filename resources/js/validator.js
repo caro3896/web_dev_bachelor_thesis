@@ -1,4 +1,3 @@
-// VALIDATIONS
 export const validateName = (form, options = {}) => {
     let error = '';
 
