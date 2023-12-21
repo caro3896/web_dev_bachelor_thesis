@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
+      - name: Print Node.js version
+        run: node --version
+
       - name: Deploy to Hetzner Cloud using ssh
         uses: appleboy/ssh-action@master
         with:
