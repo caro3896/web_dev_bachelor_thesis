@@ -35,7 +35,6 @@ export default {
 <template>
     <Head title="Pandi Web - Rewards 23" />
     <section>
-        <h1>Hello</h1>
         <div class="flex justify-between items-center w-52 pb-6">
             <div class="w-16 h-8 border rounded-full flex items-center p-1 cursor-pointer duration-300 ease-in-out" :class="{ 'bg-yellow': toggleActive}" @click="toggleActive = !toggleActive">
                 <div class="bg-white-gray w-6 h-6 rounded-full transform duration-300 ease-in-out" :class="{ 'translate-x-8': toggleActive,}"></div>
