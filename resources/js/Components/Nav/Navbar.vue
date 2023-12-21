@@ -23,7 +23,7 @@
 
     <!-- Desktop navigation -->
     <nav class="sticky z-10 bg-gray bg-opacity-80 top-0 p-4 border-b pb-2 justify-between h-32 hidden md:flex items-center">
-        <h1 class="mb-4"><Link href="/" class="text-off-white text-8xl mb-6">Rewards<span class="text-yellow">23</span></Link></h1>
+        <h1 class="mb-4"><Link href="/" class="text-yellow text-8xl mb-6">Rewards<span class="text-yellow">23</span></Link></h1>
         <div class="flex flex-col items-end h-full justify-evenly">
             <div class="">
                 <!-- Only show admin page if user is admin -->
