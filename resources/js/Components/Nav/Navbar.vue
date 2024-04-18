@@ -2,7 +2,7 @@
     <!-- Mobile navigation -->
     <nav class="sticky z-10 bg-gray bg-opacity-80 top-0 p-4 border-b pb-2 flex justify-between h-36 md:hidden">
         <div>
-            <h1 class="mb-4"><Link href="/" class="text-off-white text-6xl mb-6">Rewardssss<span class="text-yellow">23</span></Link></h1>
+            <h1 class="mb-4"><Link href="/" class="text-off-white text-6xl mb-6">Rewards<span class="text-yellow">23</span></Link></h1>
             <p class="text-yellow text-3xl">Til rådighed: {{credits}} x coins</p>
         </div>
         <div class="flex flex-col items-end justify-around">
